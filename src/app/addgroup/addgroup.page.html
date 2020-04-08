@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>グループを追加</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating" >グループ名を入力...</ion-label>
+      <ion-input [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>パスワードを設定</ion-label>
+      <ion-toggle [(ngModel)]="passtoggle"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="passtoggle">
+      <ion-label position="floating">設定するパスワードを入力...</ion-label>
+      <ion-input [(ngModel)]="pass"></ion-input>
+    </ion-item>
+  </ion-list>
+<ion-button (click)="send()" expand="block">グループを作成</ion-button>
+</ion-content>

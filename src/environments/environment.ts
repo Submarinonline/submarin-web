@@ -1,10 +1,18 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDP4XqmXTZixszR96PcS1alvijTU2U2xZs",
+    authDomain: "submarin-web.firebaseapp.com",
+    databaseURL: "https://submarin-web.firebaseio.com",
+    projectId: "submarin-web",
+    storageBucket: "submarin-web.appspot.com",
+    messagingSenderId: "1080856965224"
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

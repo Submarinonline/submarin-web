@@ -1,0 +1,77 @@
+<style>
+  .ib{
+    display: inline-block;
+  }
+  .item-inner { position: relative; width: 100%; padding-right: 0px!important; }
+  .searchbar-search-icon {
+    display: none;
+  }
+  .item .sc-ion-label-md-h{
+    white-space: normal;
+  }
+  .talk {
+    border-radius: 10px;
+    display: inline-block;
+    padding: 8px;
+    min-width: 12em;
+    margin-left: 10px;
+    background:var(--ion-color-light);
+  }
+  .me {
+    text-align:right;
+  }
+  .mes{
+    color: #fff;
+    background:#387EF6;
+    text-align: left;
+  }
+</style>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="openmenu($event)"><ion-icon name="menu-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content [scrollEvents]="true">
+  <div style="margin-bottom: 48px;overflow: hidden; min-height: 100%; width: 95%;" #talklist>
+    <div *ngFor="let ary of talkarray" #messages [class.me]="ary[0] === name">
+      <div style="display: inline-block; position: relative;width: 100%;margin-left: 10px;">
+        <h5>
+          <ion-avatar slot="start" style="vertical-align: middle;display: inline-block; width: 30px; height: 30px;">
+            <img src="{{ary[2]}}">
+          </ion-avatar>
+          {{ary[0]}}
+          <div *ngIf="ary[5]" style="display: inline-block;">
+            <p style="display: inline-block;"style="font-size: 5px; display: inline-block;">{{ary[5]}} |</p>
+          <p style="display: inline-block;"> </p>
+            <p style="font-size: 5px; display: inline-block;" innerHTML="{{ary[3]}}"></p>
+          </div>
+        </h5>
+      </div>
+      <div class="talk" *ngIf="ary[1]" [class.mes]="ary[0] === name">
+        <p>{{ary[1]}}</p>
+      </div>
+        <div *ngIf="ary[9]" class="talk" [class.mes]="ary[0] === name">
+          <p>[image]</p>
+          <img [src]="ary[9]" style="border-radius: 10px;">
+        </div>
+
+    </div>
+  </div>
+  <ion-item style="position: fixed; bottom: 0; width: 100%;">
+      <ion-input type="text" [(ngModel)]="inputv" placeholder="メッセージを入力.."></ion-input>
+      <ion-button fill="clear" (click)="GIF()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon  style="font-size: 24px;" name="shapes"></ion-icon></ion-button>
+      <input ion-button fill="clear" type="file" accept="image/*" style="height: 100%;width: 45px;opacity: 0;z-index: 3;position: absolute;right: 35px;" id="imgs"><ion-icon style="color: #387EF6; z-index: -3;" name="images"></ion-icon>
+      <ion-button fill="clear" (click)="send()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon  style="font-size: 24px;" name="send"></ion-icon></ion-button>
+       <!-- <input style="color: transparent; position: relative; width: 100%; height: 100%;" type="file" accept="image/*">-->
+  </ion-item>
+</ion-content>
+ 

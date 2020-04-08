@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>画像を送信</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--<div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: 0 auto; text-align: center;" *ngIf="!fload">
+  <ion-spinner></ion-spinner>
+  <p>読み込み中...</p>
+  </div>-->
+  <div class="file-field input-field" style="position: fixed; top: 0; text-align: center;width: 100%; margin: 0 auto;">
+    <ion-button class="btn waves-effect waves-light" style="background-color: #4c8bf5; position: relative; width: 100%;top: 0;left: 0; right:0; margin: 0 auto;">
+        <span>ファイルを選択</span>
+        <input type="file" id="triming_image" name="triming_image" class="triming-image" accept="image/*">
+    </ion-button>
+</div>
+<div class="progress" style="position: fixed; margin-top: 0px; background: transparent;z-index: 99999;" id="loader">
+    <div style="background: #fff;" class="indeterminate"></div>
+</div>
+<p style="position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%); padding: 15px 30px; background: rgba(0,0,0,0.0); text-align: center;backface-visibility: hidden;
+transform-style: preserve-3d;width: 300px; color: #606060; z-index: -1;">
+画像を選択するとここにトリミング用の枠が表示されます。
+</p>
+<img src="" alt="画像" id="trimed_image" style="display: none;"/>
+<ion-button id="crop_btn" class="btn  waves-effect waves-light" style="position: absolute; width: 100%;bottom: 0px; background-color: #4c8bF5; color: #fff;">画像を使用する</ion-button>
+</ion-content>
