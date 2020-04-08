@@ -14,7 +14,7 @@
   </div>
     <div class="images" style="position: relative; z-index: 20;">
     <div class="one-image" *ngFor="let arys of ary" (click)="go(arys.images.downsized_large.url)">
-      <img [src]="arys.images.original.url"  class="imgw" style="border-radius: 10px;">
+      <ion-img [src]="arys.images.original.url"  class="imgw" style="border-radius: 10px;"></ion-img>
     </div>
     </div>
 </ion-content>

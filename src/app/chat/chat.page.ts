@@ -84,7 +84,7 @@ export class ChatPage {
     sendarray.push('kzibgkidnmdbrtxwhzace');
     sendarray.push(value);
     sendarray.push(this.url);
-    sendarray.push('<b>Submarin</b> Web 5');
+    sendarray.push('<b>Submarin</b> Web 5.1');
     sendarray.push('810');
     sendarray.push(this.tw);
     sendarray.push('114514');
@@ -111,7 +111,7 @@ export class ChatPage {
     sendarray.push(this.name);
     sendarray.push(val);
     sendarray.push(this.url);
-    sendarray.push('<b>Submarin</b> Web 5');
+    sendarray.push('<b>Submarin</b> Web 5.1');
     sendarray.push('810');
     sendarray.push(this.tw);
     sendarray.push('114514');

@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin-web.web.app) 
-***version 5.0***
+***version 5.1***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -11,6 +11,7 @@
  - [x] オープンチャット
  - [x] GIF(GIPHY)
  - [ ] 画像送信
+ - [x] GIF lazyLoading 
  - [x] グループ
  - [ ] グループ検索
  - [ ] グループ削除
