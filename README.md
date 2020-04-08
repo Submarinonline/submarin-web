@@ -2,7 +2,7 @@
 [Submarin Web](https://submarin-web.web.app) 
 ***version 5.0***
 # License
-MIT License
+[MIT License](https://opensource.org/licenses/MIT)
 # 使い方
 1) このリポジトリをクローン
 2) debug>```ionic serve```
