@@ -25,7 +25,11 @@
 .one-image {
     margin: 2px;
     transition: 0.2s;
+    border-radius: 10px;
 }
 .one-image:active{
     transform:scale(0.8);
+}
+.imgw {
+    border-radius: 10px;
 }

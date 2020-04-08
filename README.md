@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin-web.web.app) 
-***version 5.1***
+***version 5.2***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -15,6 +15,7 @@
  - [x] グループ
  - [ ] グループ検索
  - [ ] グループ削除
+ - [ ] グループアイコンの設定
  - [ ] アプリからログイン
  - [ ] Twitterでログイン
  - [ ] 動画対応
@@ -22,4 +23,4 @@
  - [ ] リンク表示/OGP対応
  - [ ] メンション
  - [ ] push通知
- - [ ] 通知音
+ - [x] 通知音

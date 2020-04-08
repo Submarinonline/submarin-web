@@ -25,6 +25,7 @@ export class ChatPage {
   nr: any;
   device: any;
   mute: any;
+  notifysound: any;
   name: any;
   img: any;
   inputv: String;
@@ -59,7 +60,7 @@ export class ChatPage {
       }
     });
   }
-
+  private Sound: HTMLAudioElement = new Audio('./assets/pito.mp3');
   async openmenu(ev: any) {
     console.log('open');
     const popover = await this.popoverController.create({
@@ -84,7 +85,7 @@ export class ChatPage {
     sendarray.push('kzibgkidnmdbrtxwhzace');
     sendarray.push(value);
     sendarray.push(this.url);
-    sendarray.push('<b>Submarin</b> Web 5.1');
+    sendarray.push('<b>Submarin</b> Web 5.2');
     sendarray.push('810');
     sendarray.push(this.tw);
     sendarray.push('114514');
@@ -111,7 +112,7 @@ export class ChatPage {
     sendarray.push(this.name);
     sendarray.push(val);
     sendarray.push(this.url);
-    sendarray.push('<b>Submarin</b> Web 5.1');
+    sendarray.push('<b>Submarin</b> Web 5.2');
     sendarray.push('810');
     sendarray.push(this.tw);
     sendarray.push('114514');
@@ -193,6 +194,7 @@ export class ChatPage {
     this.content.scrollToBottom(400);
   }
   async ionViewWillEnter() {
+    this.Sound.load();
     this.headers = new HttpHeaders();
     this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
     const actionSheet = await this.as.create({
@@ -244,6 +246,11 @@ export class ChatPage {
     const firstmessage = '<font+color=#FFFFAA>●</font>　' + this.name + 'が参加しました (Web)';
     this.send2(firstmessage);
     this.pn.getMessage(this.roomname, (msg) => {
+      this.storage.get('notifysound').then((val) => {
+        console.log('notifysound', val);
+        console.log(this.notifysound);
+        this.notifysound = val;
+      });
       console.log(msg);
       var arymsg = msg.message.split('|||||');
       const va = String(arymsg[1]);
@@ -263,6 +270,9 @@ export class ChatPage {
           nary.push(arymsg[8]);
           this.talkarray.push(nary);
         } else {
+          if(this.notifysound){
+            this.Sound.play();
+          }
           if (msg.message.includes('[online]:')) {
             console.log('online' + msg.message);
           } else if (msg.message.includes('kzibgkidnmdbrtxwhzace')) {

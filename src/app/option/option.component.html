@@ -1,6 +1,11 @@
 <ion-list>
   <ion-item>
-    <ion-input placeholder="ここにミュートワードを入力" #inpt></ion-input>
+    <ion-input placeholder="ミュートワードを入力" #inpt></ion-input>
   <ion-button (click)="send()" expand="block">OK</ion-button>
   </ion-item>
+  <ion-item>
+
+    <ion-label>通知音</ion-label>
+    <ion-checkbox [(ngModel)]="notifytoggle" (click)="NS()"></ion-checkbox>
+    </ion-item>
   </ion-list>
