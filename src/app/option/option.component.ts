@@ -9,6 +9,7 @@ import { ToastController } from '@ionic/angular';
 export class OptionComponent {
   @ViewChild('inpt') in: any;
   notifytoggle: any;
+  jptoggle: any;
   sleep: any;
   constructor(private toastController:ToastController,private storage:Storage) { }
   
@@ -19,9 +20,12 @@ export class OptionComponent {
       console.log(this.in);
       this.in.value = val;
     });
+    await this.storage.get('correctjp').then((val) => {
+      console.log('correctjp', val);
+      this.jptoggle = val;
+    });
     await this.storage.get('notifysound').then((val) => {
       console.log('notifysound', val);
-      console.log(this.in);
       this.notifytoggle = val;
     });
   }
@@ -35,6 +39,17 @@ export class OptionComponent {
     this.sleep(300);
     console.log(st);
     await this.storage.set('notifysound', st);
+  }
+  async CJ() {
+    var st;
+    if (this.jptoggle) {
+      st = false;
+    } else {
+      st = true;
+    }
+    this.sleep(300);
+    console.log(st);
+    await this.storage.set('correctjp', st);
   }
   async send() {
     await console.log(this.in);

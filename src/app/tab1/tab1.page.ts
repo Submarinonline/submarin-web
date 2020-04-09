@@ -17,7 +17,6 @@ export class Tab1Page {
   ionViewWillEnter() {
     console.log('iv');
     this.db.list('room').valueChanges().subscribe(data => {
-      console.log(data);
       this.room = data;
       this.first = data;
       this.room.reverse();

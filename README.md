@@ -1,5 +1,5 @@
 # Submarin-web
-[Submarin Web](https://submarin-web.web.app) 
+[Submarin Web](https://submarin.online) 
 ***version 5.2***
 # License
 [MIT License](https://opensource.org/licenses/MIT)

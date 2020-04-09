@@ -37,7 +37,7 @@ async send(){
         this.success();
     } else {
       const toast = await this.toastController.create({
-        header: '名前が空白か。20文字を超えています。',
+        header: '名前が空白か20文字を超えています。',
         message: '',
         position: 'bottom',
         buttons: [
