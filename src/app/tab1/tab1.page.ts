@@ -1,8 +1,9 @@
 import { Component,ViewChild } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras,ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -12,10 +13,20 @@ export class Tab1Page {
   @ViewChild('inp')inp:any;
   room: any;
   first: any;
-  constructor(private alert:AlertController,private db:AngularFireDatabase,private router: Router, private toastController: ToastController) {
+  url: string;
+  name: string;
+  setcheck: boolean;
+  twitter: string;
+  constructor(private route:ActivatedRoute,private storage:Storage,private alert:AlertController,private db:AngularFireDatabase,private router: Router, private toastController: ToastController) {
+    this.route.queryParams.subscribe(params => {
+      this.url = params["url"];
+      this.name = params["name"];
+      this.twitter = params["id"];
+    });
   }
   ionViewWillEnter() {
     console.log('iv');
+    this.setprofbyapp();
     this.db.list('room').valueChanges().subscribe(data => {
       this.room = data;
       this.first = data;
@@ -65,7 +76,37 @@ export class Tab1Page {
       this.gosend(name);
     }
   }
-
+  async setprofbyapp() {
+    if (this.name) {
+      await this.storage.set('name', this.name);
+      this.setcheck = true;
+    } if (this.url) {
+      await this.storage.set('url', this.url);
+      this.setcheck = true;
+    }if (this.twitter){
+        await this.storage.set('tw', this.twitter);
+        this.setcheck = true;
+    }
+    const ts = await this.toastController.create({
+      header: 'アプリとプロフィールが同期されました。',
+      message: '',
+      position: 'bottom',
+      duration:3000,
+      buttons: [
+        {
+          text: '閉じる',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+      
+    if (this.setcheck) {
+        ts.present();
+      }
+  }
   async search(ev) {
       const toast = await this.toastController.create({
         message: '現在検索は利用できません。',

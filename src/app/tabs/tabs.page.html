@@ -1,4 +1,9 @@
-<ion-tabs>
+<style>
+  .hide {
+    display: none;
+  }
+</style>
+<ion-tabs [style.hide]="!ifhide">
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="group">

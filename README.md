@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 6***
+***version 6.2***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -18,6 +18,7 @@
  - [ ] グループ削除
  - [ ] グループアイコンの設定
  - [x] アプリからログイン
+ - [x] アプリ向け最適化
  - [ ] Ctrl + Enterで送信
  - [ ] Twitterでログイン
  - [ ] 動画対応

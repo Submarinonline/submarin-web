@@ -116,12 +116,15 @@ export class ChatPage {
         this.device = false;
       });
     }
+  onEnter(e) {
+    console.log(e);
+  }
     send2(value){
       const sendarray = [];
       sendarray.push('kzibgkidnmdbrtxwhzace');
       sendarray.push(value);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6');
+      sendarray.push('<b>Submarin</b> Web 6.2');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -147,7 +150,7 @@ export class ChatPage {
       sendarray.push(this.name);
       sendarray.push(val);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6');
+      sendarray.push('<b>Submarin</b> Web 6.2');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
