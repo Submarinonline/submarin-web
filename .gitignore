@@ -6,7 +6,7 @@
 .tmp
 *.tmp
 hidefile.json
-/environments
+*environment.*
 *.tmp.*
 *.sublime-project
 *.sublime-workspace
