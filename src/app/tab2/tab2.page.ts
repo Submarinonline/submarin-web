@@ -22,7 +22,7 @@ gochat(){
    };
    this.router.navigate(['chat'],nav);
 }
-  public async showActionSheet(photo, position) {
+  async showActionSheet(photo, position) {
     const actionSheet = await this.actionSheetController.create({
       header: 'Photos',
       buttons: [{
