@@ -1,5 +1,5 @@
 import { OptionComponent } from './../option/option.component';
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, HostListener} from '@angular/core';
 import { Routes, NavigationExtras,ActivatedRoute, Router } from '@angular/router';
 import {PubNubAngular} from 'pubnub-angular2';
 import { Storage } from '@ionic/storage';
@@ -24,6 +24,7 @@ export class ChatPage {
   title: any;
   imgas: any;
   cjp: any;
+  enter: boolean;
   nr: any;
   device: any;
   mute: any;
@@ -40,13 +41,13 @@ export class ChatPage {
   @ViewChild('content') content: any;
   @ViewChild('messages') messages: any;
   @ViewChild('talklist') talklist: any;
-  
   constructor(private sanitizer: DomSanitizer,private push: Push,public as:ActionSheetController,public ac: AlertController,public modalController: ModalController,public popoverController: PopoverController,private http: HttpClient,public toastController:ToastController,public storage:Storage,private route: ActivatedRoute, private router: Router,pubnub: PubNubAngular) {
     //console.log(Hidefile.pnp);
     const pn = pubnub.init({
-      publishKey: 'pub-c-0ec79073-8a0b-437f-a597-d25dbf991628',
+    publishKey: 'pub-c-0ec79073-8a0b-437f-a597-d25dbf991628',
       subscribeKey: 'sub-c-387fb044-4da6-11ea-814d-0ecb550e9de2'
     });
+    document.addEventListener('keydown', this.one.bind(this),false);
     this.pn = pn;
     this.route.queryParams.subscribe(params => {
       try {
@@ -66,7 +67,21 @@ export class ChatPage {
   async correctjp(value) {
     return value;
   }
-  
+  async one(e) {
+    if (e["keyCode"] == 13) {
+      this.enter = true;
+      await setTimeout(this.ef,400);
+    } else if (e["keyCode"] == 17) {
+      if(this.enter){
+        console.log('send!');
+        await this.send();
+      }
+    }
+    console.log(e);
+  }
+  ef() {
+    this.enter = false;
+  }
   async setimgas(){
     this.imgas = await this.as.create({
       header: '画像の操作を選択',
@@ -116,15 +131,12 @@ export class ChatPage {
         this.device = false;
       });
     }
-  onEnter(e) {
-    console.log(e);
-  }
     send2(value){
       const sendarray = [];
       sendarray.push('kzibgkidnmdbrtxwhzace');
       sendarray.push(value);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.2');
+      sendarray.push('<b>Submarin</b> Web 6.3');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -150,7 +162,7 @@ export class ChatPage {
       sendarray.push(this.name);
       sendarray.push(val);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.2');
+      sendarray.push('<b>Submarin</b> Web 6.3');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');

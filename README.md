@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 6.2***
+***version 6.3***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -10,7 +10,7 @@
 # 実装状況
  - [x] オープンチャット
  - [x] GIF(GIPHY)
- - [ ] 画像送信s
+ - [ ] 画像送信
  - [x] GIF lazyLoading 
  - [x] グループ
  - [x] Firefox/safari向けデザイン調整
@@ -19,7 +19,7 @@
  - [ ] グループアイコンの設定
  - [x] アプリからログイン
  - [x] アプリ向け最適化
- - [ ] Ctrl + Enterで送信
+ - [x] Ctrl + Enterで送信
  - [ ] Twitterでログイン
  - [ ] 動画対応
  - [x] Youtube埋め込み
