@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="inpt" (search)="go($event)" placeholder="Youtubeを検索..."></ion-searchbar>
+    <ion-button (click)="go(false)" expand="block">検索</ion-button>
+    <ion-buttons slot="end">
+ <ion-button (click)="close()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div style="text-align: center; position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: 0 auto; z-index: -11;">
+    <p *ngIf="!first">ここに検索結果が表示されます。</p> 
+    <ion-spinner *ngIf="loader"></ion-spinner>
+  </div>
+<ion-grid>
+<ion-row size="3">
+<ion-col *ngFor="let ytrs of ytr" (click)="open(ytrs.id.videoId)">
+<ion-img style="width: 165px; height: 124px; border-radius: 10px;" [src]="ytrs.snippet.thumbnails.medium.url"></ion-img>
+  <h5>{{ytrs.snippet.title}}</h5>
+  </ion-col>
+</ion-row>
+</ion-grid>
+</ion-content>

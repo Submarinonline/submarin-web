@@ -9,6 +9,7 @@ import { ModalController } from '@ionic/angular';
 export class GifPage implements OnInit {
   ary: any; 
   first: any;
+  inpt: any;
   load: any;
   constructor(public mc:ModalController,public http:HttpClient) { }
 
@@ -25,10 +26,18 @@ export class GifPage implements OnInit {
     this.first= true;
     this.load = true;
     console.log(val);
-    this.http.get('https://api.giphy.com/v1/gifs/search?api_key=l2nhg2q102M232HVrENnChccbYAj1e1E&limit=25&offset=0&rating=G&lang=en&q=' + val.target.value).subscribe(res => {
-      console.log(res);
-      this.load = false;
-      this.ary = res["data"];
-    });
+    if (val) {
+      this.http.get('https://api.giphy.com/v1/gifs/search?api_key=l2nhg2q102M232HVrENnChccbYAj1e1E&limit=25&offset=0&rating=G&lang=en&q=' + val.target.value).subscribe(res => {
+        console.log(res);
+        this.load = false;
+        this.ary = res["data"];
+      });
+    } else {
+      this.http.get('https://api.giphy.com/v1/gifs/search?api_key=l2nhg2q102M232HVrENnChccbYAj1e1E&limit=25&offset=0&rating=G&lang=en&q=' + this.inpt).subscribe(res => {
+        console.log(res);
+        this.load = false;
+        this.ary = res["data"];
+      });
+    }
 }
 }

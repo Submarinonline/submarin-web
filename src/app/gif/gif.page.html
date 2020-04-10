@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar (search)="get($event)" placeholder="GIFを検索..."></ion-searchbar>
+    <ion-searchbar [(ngModel)]="inpt" (search)="get($event)" placeholder="GIFを検索..."></ion-searchbar>
+    <ion-button (click)="get(false)" expand="block">検索</ion-button>
     <ion-buttons slot="end">
  <ion-button (click)="close()"><ion-icon name="close-circle"></ion-icon></ion-button>
     </ion-buttons>

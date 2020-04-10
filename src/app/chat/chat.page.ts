@@ -9,6 +9,7 @@ import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PopoverController,AlertController,ActionSheetController,ToastController,ModalController } from '@ionic/angular';
 import { GifPage } from './../gif/gif.page';
+import { YoutubePage } from './../youtube/youtube.page';
 declare var $;
 @Component({
   selector: 'app-chat',
@@ -120,7 +121,7 @@ export class ChatPage {
       sendarray.push('kzibgkidnmdbrtxwhzace');
       sendarray.push(value);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 5.6');
+      sendarray.push('<b>Submarin</b> Web 6');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -146,7 +147,7 @@ export class ChatPage {
       sendarray.push(this.name);
       sendarray.push(val);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 5.6');
+      sendarray.push('<b>Submarin</b> Web 6');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -367,6 +368,22 @@ export class ChatPage {
         this.chkmute(va,msg.message,arymsg);
         
       });
+    }
+    
+    async ytopen() {
+      const modal = await this.modalController.create({
+        component: YoutubePage
+      });
+      modal.onDidDismiss()
+      .then((data) => {
+        console.log(data);
+        if(data.data){
+          this.sendmsg('[yt]:' + data.data);
+        } else {
+          console.log('empty yt');
+        }
+      });
+      return await modal.present();
     }
     
     async GIF() {

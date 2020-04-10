@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'gif',
     loadChildren: () => import('./gif/gif.module').then( m => m.GifPageModule)
+  },
+  {
+    path: 'youtube',
+    loadChildren: () => import('./youtube/youtube.module').then( m => m.YoutubePageModule)
   }
 ];
 @NgModule({

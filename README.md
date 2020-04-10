@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 5.6***
+***version 6***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -21,7 +21,7 @@
  - [ ] Ctrl + Enterで送信
  - [ ] Twitterでログイン
  - [ ] 動画対応
- - [ ] Youtube埋め込み
+ - [x] Youtube埋め込み
  - [ ] リンク表示/OGP対応
  - [ ] バージョン変数/アプデ確認
  - [ ] メンション
