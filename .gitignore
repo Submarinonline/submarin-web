@@ -6,7 +6,6 @@
 .tmp
 *.tmp
 hidefile.json
-/src/environments/**
 *.tmp.*
 *.sublime-project
 *.sublime-workspace
@@ -31,3 +30,4 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+/src/environments/
