@@ -1,77 +1,4 @@
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
-  ::selection{background-color: salmon; color: white;}
-.parallax > use{
-  animation:move-forever 12s linear infinite;
-  /*&:nth-child(1){animation-delay:-2s;}
-  &:nth-child(2){animation-delay:-2s; animation-duration:5s}
-  &:nth-child(3){animation-delay:-4s; animation-duration:3s}*/
-}
-
-@keyframes move-forever{
-  0%{transform: translate(-90px , 0%)}
-  100%{transform: translate(85px , 0%)} 
-}
-@import url('https://fonts.googleapis.com/css2?family=Sen:wght@700&display=swap');
-
-
-.editorial {
-  display: block;
-  width: 100%;
-  height: 10em;
-  max-height: 100vh;
-  margin: 0;
-}
-
-body {
-  background-color: #323232;
-  margin: 0;/*max-height: 100vh; */overflow:hidden;
-  padding: 9em 0 0 0;
-}
-
-.content {
-
-  bottom: 0;
-margin-bottom: 0;
-font-family: 'Lato',sans-serif;  
-  text-align: center;  background-color: #41ADEF;
-  text-align: center;
-  min-height: 100vh;
-  margin: -.1em 0 0 0;
-  padding: 1em;
-  color: #eee;
-  font-size: 2em;
-  font-weight: 300;
-}
-.content{font-size: 1em;}
-
-.content h1 {
-  margin-top:-1.3em;
-  font-weight: 100;
-  font-size: 5em;
-  user-select:none;
-  cursor: default;
-}
-
-/*prevent many large-by-comparison ripples by shrinking the height*/
-@media (max-width:50em){
-  .content h1{font-size: 12vmax}
-  .editorial{height:17vw;}
-}
-
-h1{outline:none}
-
-body{background-color:#234}
-.logo{
-  width: 40%;
-}
-@media only screen and (max-width: 750px) {
-.logo{
-width: 80%;
-}
-}
-</style>
-  <ion-content>
+<ion-content>
     <svg class="editorial"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -100,6 +27,7 @@ d="M-160 44c30 0
   <div style="text-align: center; font-family: 'Comfortaa', cursive; vertical-align: middle;">
     <ion-icon style="vertical-align: middle;" name="cube-outline"></ion-icon> 5.2
     </div>
- <ion-button (click)="gochat()" expand="block" color="light" style="color:dodgerblue; position: fixed; left: 0; right: 0; margin: 0 auto;bottom: 10vh; width: 80%;" size="large">はじめる</ion-button>
-</div>
+
+      <ion-button (click)="gochat()" expand="block" color="light" style="color:dodgerblue; position: absolute; bottom: 2em; left: 0; right: 0; margin: 0 auto;width: 80%;" size="large">はじめる</ion-button>
+    </div>
 </ion-content>

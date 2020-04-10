@@ -13,7 +13,7 @@
  - [ ] 画像送信
  - [x] GIF lazyLoading 
  - [x] グループ
- - [ ] Firefox/safari向けデザイン調整
+ - [x] Firefox/safari向けデザイン調整
  - [ ] グループ検索
  - [ ] グループ削除
  - [ ] グループアイコンの設定
