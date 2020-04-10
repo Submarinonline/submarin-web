@@ -136,7 +136,7 @@ export class ChatPage {
       sendarray.push('kzibgkidnmdbrtxwhzace');
       sendarray.push(value);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.3');
+      sendarray.push('<b>Submarin</b> Web 6.6');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -162,7 +162,7 @@ export class ChatPage {
       sendarray.push(this.name);
       sendarray.push(val);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.3');
+      sendarray.push('<b>Submarin</b> Web 6.6');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -231,8 +231,9 @@ export class ChatPage {
       if(!this.url|| this.url === ' '|| this.url === '　'||this.url === ''){
         this.url = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png';
       }
-      if(this.url === 'hisubway.png'){
-        this.url = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2FHiSubway%2Fstatus%2F1240129181930921988&psig=AOvVaw0wu1kej3--GQVe6Mh1fj1h&ust=1586266197919000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOijqp300-gCFQAAAAAdAAAAABAD';
+      console.log(this.url);
+      if(this.url == 'hisubway.png'){
+        this.url = 'https://pbs.twimg.com/profile_images/1245034931652194304/m3R_RlrO_400x400.jpg';
       }
       if (!this.name || this.name === ' ' || this.name === '　' || this.name === '' || this.name === null) {
         this.router.navigate(['tabs/profile']);
@@ -268,8 +269,8 @@ export class ChatPage {
       viewary.push('');
       viewary.push(arymsg[2]);
       this.talkarray.push(viewary);
-      if (this.talkarray.length > 1){
-        this.sbottom();
+      if (this.talkarray.length > 0){
+       // this.sbottom();
       }
     }
     async pnsubscribe() {
@@ -319,7 +320,6 @@ export class ChatPage {
               const plusrp = msg.replace('+', ' ');
               var arymss = plusrp.split('|||||');
               this.talkarray.push(arymsg);
-              this.sbottom();
               console.log(this.talkarray);
             }
           }
@@ -342,7 +342,6 @@ export class ChatPage {
       arymsg[1] = false;
       arymsg[9] = url;
       this.talkarray.push(arymsg);
-      this.sbottom();
   }
   async yt(va, arymsg) {
       console.log('youtube');
@@ -351,7 +350,6 @@ export class ChatPage {
     arymsg[11] = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + url);
      this.ytloading = true;
       this.talkarray.push(arymsg);
-      this.sbottom();
   }
   async ytl(){
     this.ytloading = false;
@@ -381,6 +379,7 @@ export class ChatPage {
         var arymsg = msg.message.split('|||||');
         const va = String(arymsg[1]);
         this.chkmute(va,msg.message,arymsg);
+        this.sbottom();
         
       });
     }
