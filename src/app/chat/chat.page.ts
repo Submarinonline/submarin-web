@@ -136,7 +136,7 @@ export class ChatPage {
       sendarray.push('kzibgkidnmdbrtxwhzace');
       sendarray.push(value);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.6');
+      sendarray.push('<b>Submarin</b> Web 6.8');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -162,7 +162,7 @@ export class ChatPage {
       sendarray.push(this.name);
       sendarray.push(val);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.6');
+      sendarray.push('<b>Submarin</b> Web 6.8');
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -257,12 +257,12 @@ export class ChatPage {
       console.log('入退室');
       console.log(arymsg);
       const viewary = [];
-      if (stringmessage.includes('<font+color=#FFFFAA>')) {
+      if (stringmessage.includes('<font color=#FFFFAA>')) {
         console.log('入室');
-        this.nr = arymsg[1].replace('<font+color=#FFFFAA>●</font>', '');
+        this.nr = arymsg[1].replace('<font color=#FFFFAA>●</font>', '');
       } else {
         console.log('退室');
-        this.nr = arymsg[1].replace('<font+color=#CCCCCC>●</font>', '');
+        this.nr = arymsg[1].replace('<font color=#CCCCCC>●</font>', '');
       }
       console.log(this.nr);
       viewary.push(this.nr)
@@ -317,8 +317,6 @@ export class ChatPage {
             } else if (va.includes('[pic]:')) {
               await this.inpic(va, arymsg);
             } else {
-              const plusrp = msg.replace('+', ' ');
-              var arymss = plusrp.split('|||||');
               this.talkarray.push(arymsg);
               console.log(this.talkarray);
             }
@@ -372,11 +370,12 @@ export class ChatPage {
       this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
       this.talkarray = [];
       this.pnsubscribe();
-      const firstmessage = '<font+color=#FFFFAA>●</font>　' + this.name + 'が参加しました (Web)';
+      const firstmessage = '<font color=#FFFFAA>●</font>　' + this.name + 'が参加しました (Web)';
       this.send2(firstmessage);
       this.pn.getMessage(this.roomname, (msg) => {
         this.getmessageset();
-        var arymsg = msg.message.split('|||||');
+        var rep = msg.message.replace('+', ' ');
+        var arymsg = rep.split('|||||');
         const va = String(arymsg[1]);
         this.chkmute(va,msg.message,arymsg);
         this.sbottom();
@@ -417,7 +416,7 @@ export class ChatPage {
     }
     
     async ionViewWillLeave(){
-      const firstmessage = '<font+color=#CCCCCC>●</font>　' + this.name + 'が退出しました (Web)';
+      const firstmessage = '<font color=#CCCCCC>●</font>　' + this.name + 'が退出しました (Web)';
       this.send2(firstmessage);
       this.pn.clean(this.roomname);
       this.talkarray = false;
