@@ -5,6 +5,8 @@
 *.sw[mnpcod]
 .tmp
 *.tmp
+hidefile.json
+environment.ts
 *.tmp.*
 *.sublime-project
 *.sublime-workspace

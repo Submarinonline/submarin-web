@@ -11,6 +11,8 @@ import { Router,ActivatedRoute,Routes,NavigationExtras } from '@angular/router';
 export class Tab2Page {
   url: string;
   name: string;
+  kdict: any;
+  v: string;
   setcheck: boolean;
   twitter: string;
   constructor(public toast: ToastController, private storage: Storage, private route: ActivatedRoute, private router: Router, public photoService: PhotoService, public actionSheetController: ActionSheetController) {
@@ -19,12 +21,13 @@ export class Tab2Page {
       this.name = params["name"];
       this.twitter = params["id"];
     });
-    
+    this.kdict = require('./../../hidefile.json');
   }
 
   ngOnInit() {
     this.photoService.loadSaved();
     this.setprofbyapp();
+    this.v = this.kdict["Version"];
   }
   async setprofbyapp() {
     if (this.name) {

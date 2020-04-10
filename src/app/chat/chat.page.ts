@@ -4,7 +4,6 @@ import { Routes, NavigationExtras,ActivatedRoute, Router } from '@angular/router
 import {PubNubAngular} from 'pubnub-angular2';
 import { Storage } from '@ionic/storage';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
-//import { Hidefile } from '../hidefile.json';
 import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PopoverController,AlertController,ActionSheetController,ToastController,ModalController } from '@ionic/angular';
@@ -27,6 +26,7 @@ export class ChatPage {
   enter: boolean;
   nr: any;
   device: any;
+  v: any;
   mute: any;
   notifysound: any;
   name: any;
@@ -35,6 +35,7 @@ export class ChatPage {
   url: any;
   headers: any;
   tw: any;
+  kdict: any;
   imgfile: any;
   talkarray: any;
   pubnub: typeof PubNubAngular;
@@ -42,10 +43,11 @@ export class ChatPage {
   @ViewChild('messages') messages: any;
   @ViewChild('talklist') talklist: any;
   constructor(private sanitizer: DomSanitizer,private push: Push,public as:ActionSheetController,public ac: AlertController,public modalController: ModalController,public popoverController: PopoverController,private http: HttpClient,public toastController:ToastController,public storage:Storage,private route: ActivatedRoute, private router: Router,pubnub: PubNubAngular) {
-    //console.log(Hidefile.pnp);
+    this.kdict = require('./../../hidefile.json');
+    this.v = this.kdict["Version"];
     const pn = pubnub.init({
-    publishKey: 'pub-c-0ec79073-8a0b-437f-a597-d25dbf991628',
-      subscribeKey: 'sub-c-387fb044-4da6-11ea-814d-0ecb550e9de2'
+    publishKey: this.kdict["pnp"],
+      subscribeKey: this.kdict["pns"]
     });
     document.addEventListener('keydown', this.one.bind(this),false);
     this.pn = pn;
@@ -122,8 +124,7 @@ export class ChatPage {
       return await popover.present();
     }
     async getip(){
-      //https://ipinfo.io//json?token=d1a2bcc95e47c0
-      const res = await this.http.get("https://ipinfo.io/json?token=d1a2bcc95e47c0")
+      const res = await this.http.get(this.kdict["ipinfo"])
       .subscribe(res => {
         console.log(res);
         this.device = res;
@@ -133,10 +134,10 @@ export class ChatPage {
     }
     send2(value){
       const sendarray = [];
-      sendarray.push('kzibgkidnmdbrtxwhzace');
+      sendarray.push(this.kdict["log"]);
       sendarray.push(value);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.8');
+      sendarray.push('<b>Submarin</b> Web ' + this.v);
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -162,7 +163,7 @@ export class ChatPage {
       sendarray.push(this.name);
       sendarray.push(val);
       sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web 6.8');
+      sendarray.push('<b>Submarin</b> Web ' + this.v);
       sendarray.push('810');
       sendarray.push(this.tw);
       sendarray.push('114514');
@@ -290,7 +291,7 @@ export class ChatPage {
     }
     async chkmute(va,msg,arymsg) {
       if (!va.includes(this.mute)) {
-        if (arymsg[1] === '[[[:reload:]]]') {
+        if (arymsg[1] === this.kdict["reload"]) {
           await this.forcereload(arymsg);
         } else {
           const me = this.checkme(arymsg);
@@ -309,7 +310,7 @@ export class ChatPage {
           }
           if(msg.includes('[online]:')) {
             console.log('online' + va);
-          }else if (msg.includes('kzibgkidnmdbrtxwhzace')) {
+          }else if (msg.includes(this.kdict["log"])) {
             await this.outin(va,arymsg);
           } else {
             if (va.includes('[yt]:')) {

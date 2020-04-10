@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 6.8***
+***version 7***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -24,7 +24,9 @@
  - [ ] 動画対応
  - [x] Youtube埋め込み
  - [ ] リンク表示/OGP対応
- - [ ] バージョン変数/アプデ確認
+ - [x] バージョン変数
+ - [x] キーを別ファイルに保存
+ - [ ] アプデ確認
  - [ ] メンション
  - [ ] push通知
  - [x] 通知音
