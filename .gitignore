@@ -4,6 +4,7 @@
 *~
 *.sw[mnpcod]
 .tmp
+environment.ts
 *.tmp
 hidefile.json
 *.tmp.*
