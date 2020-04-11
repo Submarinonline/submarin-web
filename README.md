@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 8.2***
+***version 8.3***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
