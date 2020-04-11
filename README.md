@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 8.1***
+***version 8.2***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -24,6 +24,7 @@
  - [x] Ctrl + Enterで送信
  - [ ] Twitterでログイン
  - [ ] 動画対応
+ - [ ] 怪レい日本語
  - [x] Youtube埋め込み
  - [ ] リンク表示/OGP対応
  - [x] バージョン変数

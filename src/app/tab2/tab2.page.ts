@@ -44,7 +44,7 @@ export class Tab2Page {
       header: 'アプリとプロフィールが同期されました。',
       message: '',
       position: 'bottom',
-      duration:3000,
+      duration:1300,
       buttons: [
         {
           text: '閉じる',

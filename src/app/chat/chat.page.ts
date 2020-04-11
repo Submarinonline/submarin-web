@@ -80,15 +80,16 @@ export class ChatPage {
       if(data.data){
         this.sendmsg(data.data);
       } else {
-        console.log('empty yt');
+        console.log('empty image');
       }
     });
+
     return await modal.present();
   }
   async one(e) {
     if (e["keyCode"] == 13) {
       this.enter = true;
-      await setTimeout(this.ef,400);
+      setTimeout(this.ef,300);
     } else if (e["keyCode"] == 17) {
       if(this.enter){
         console.log('send!');
@@ -167,6 +168,7 @@ export class ChatPage {
       const toast = await this.toastController.create({
         header: hd,
         message: '',
+        duration: 2000,
         position: 'bottom',
         buttons: [
           {
@@ -216,7 +218,6 @@ export class ChatPage {
       if(this.roomname== 'chat'){
         this.title="オープンチャット";
       } else {
-        //this.title=window.atob(this.roomname);
         this.title = this.roomname;
       }
       if(!this.url|| this.url === ' '|| this.url === '　'||this.url === ''){
@@ -228,10 +229,12 @@ export class ChatPage {
       }
       if (!this.name || this.name === ' ' || this.name === '　' || this.name === '' || this.name === null) {
         this.router.navigate(['tabs/profile']);
+        this.toastV('プロフィールが設定されていません。プロフィールを設定してください。','閉じる');
       }
     }
     async sbottom() {
-      this.content.scrollToBottom(400);
+      console.log('scroll bottom');
+      await this.content.scrollToBottom(200);
     }
     async getmessageset() {
       this.storage.get('notifysound').then((val) => {
@@ -325,7 +328,7 @@ export class ChatPage {
       }
     }
   
-    async inpic(va,arymsg) {
+async inpic(va,arymsg) {
       console.log('画像');
       var url = va.replace('[pic]:', '');
       arymsg[1] = false;
@@ -363,13 +366,13 @@ export class ChatPage {
       this.pnsubscribe();
       const firstmessage = '<font color=#FFFFAA>●</font>　' + this.name + 'が参加しました (Web)';
       this.send2(firstmessage);
-      this.pn.getMessage(this.roomname, (msg) => {
+      this.pn.getMessage(this.roomname, async(msg) => {
         this.getmessageset();
         var rep = msg.message.replace('+', ' ');
         var arymsg = rep.split('|||||');
         const va = String(arymsg[1]);
-        this.chkmute(va,msg.message,arymsg);
-        this.sbottom();
+        await this.chkmute(va,msg.message,arymsg);
+        await this.sbottom();
         
       });
     }

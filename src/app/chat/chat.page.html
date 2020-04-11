@@ -47,7 +47,7 @@
       <div style="display: inline-block; position: relative;width: 100%;margin-left: 10px;">
         <h5>
           <ion-avatar *ngIf="!ary[10]" slot="start" style="vertical-align: middle;display: inline-block; width: 30px; height: 30px;">
-            <ion-img src="{{ary[2]}}"></ion-img>
+            <ion-img (ionError)="ary[2] = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'" src="{{ary[2] || 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'}}"></ion-img>
           </ion-avatar>
           {{ary[0]}}
           <div *ngIf="ary[5]" style="display: inline-block; white-space: pre-wrap;">
@@ -55,7 +55,7 @@
             <p style="font-size: 10px; display: inline-block;" innerHTML="{{ary[3]}}"></p>
           </div>
           <ion-avatar *ngIf="ary[10]" slot="end" style="vertical-align: middle;display: inline-block; width: 30px; height: 30px; margin-right: 20px; margin-left: 10px;">
-            <ion-img src="{{ary[2]}}"></ion-img>
+            <ion-img src="{{ary[2] || 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'}}"></ion-img>
           </ion-avatar>
         </h5>
       </div>
