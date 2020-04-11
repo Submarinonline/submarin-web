@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PopoverController,AlertController,ActionSheetController,ToastController,ModalController } from '@ionic/angular';
 import { GifPage } from './../gif/gif.page';
 import { YoutubePage } from './../youtube/youtube.page';
+import { ImagePage } from './../image/image.page';
 declare var $;
 @Component({
   selector: 'app-chat',
@@ -69,6 +70,21 @@ export class ChatPage {
   async correctjp(value) {
     return value;
   }
+  async openimg() {
+    const modal = await this.modalController.create({
+      component: ImagePage
+    });
+    modal.onDidDismiss()
+    .then((data) => {
+      console.log(data);
+      /*if(data.data){
+        this.sendmsg('[yt]:' + data.data);
+      } else {
+        console.log('empty yt');
+      }*/
+    });
+    return await modal.present();
+  }
   async one(e) {
     if (e["keyCode"] == 13) {
       this.enter = true;
@@ -85,35 +101,9 @@ export class ChatPage {
     this.enter = false;
   }
   async setimgas(){
-    this.imgas = await this.as.create({
-      header: '画像の操作を選択',
-      buttons: [{
-        text: '画像をトリミング',
-        // role: 'destructive',
-        icon: 'crop',
-        handler: () => {
-          console.log('Delete clicked');
-          console.log(this.imgfile);
-        }
-      }, {
-        text: '画像をこのまま使用する',
-        icon: 'image',
-        handler: () => {
-          console.log('Share clicked');
-          console.log(this.imgfile);
-          let data = new FormData();
-          const image = this.imgfile.target.files[0];
-          data.append('upfile', this.imgfile);
-          data.append('p', "subway_3");
-          this.http.post('https://山D.com/upload/.submarin/uploadNM.php', data,this.headers)
-          .subscribe(
-            data => console.log(data),
-            error => console.log(error)
-            );
-          }
-        }]
-      });
-    }
+  
+
+      }
     async openmenu(ev: any) {
       console.log('open');
       const popover = await this.popoverController.create({
@@ -410,7 +400,7 @@ export class ChatPage {
         if(data.data){
           this.sendmsg('[pic]:' + data.data);
         } else {
-          console.log('empty img');
+          console.log('empty gif');
         }
       });
       return await modal.present();

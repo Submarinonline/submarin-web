@@ -7,25 +7,32 @@
 </ion-header>
 
 <ion-content style="text-align: center;">
+  <div class="top">
+    <img alt="" [src]="url.value" class="topimg" *ngIf="url">
+    <div class="n">
+    <h1 class="name"> {{this.name.value}}</h1>
+    <h3 class="id">@{{this.tw.value}}</h3>
+    </div>
+  </div>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">プロフィール設定</ion-title>
     </ion-toolbar>
   </ion-header>
-<ion-list>
-  <ion-item>
-    <ion-label placeholder="ここに名前を入力..." position="floating" >名前</ion-label>
-    <ion-input #name></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label placeholder="ここにアイコンを入力..." type="url" position="floating">アイコンURL</ion-label>
-    <ion-input #url></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label placeholder="ここにtwitterIDを入力..." position="floating">TwitterID</ion-label>
-    <ion-input #tw></ion-input>
-  </ion-item>
-</ion-list>
-<ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
-
+  <ion-list>
+    <ion-item>
+      <ion-label placeholder="ここに名前を入力..." position="floating" >名前</ion-label>
+      <ion-input #name></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label placeholder="ここにアイコンを入力..." type="url" position="floating">アイコンURL</ion-label>
+      <ion-input #url></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label placeholder="ここにtwitterIDを入力..." position="floating">TwitterID</ion-label>
+      <ion-input #tw></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
+  
 </ion-content>

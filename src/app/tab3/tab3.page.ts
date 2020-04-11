@@ -13,6 +13,9 @@ export class Tab3Page {
   constructor(private storage: Storage, public toastController: ToastController) { }
   async ionViewWillEnter() {
     console.log('ivl');
+    this.setval();
+  }
+  async setval() {
     await this.storage.get('name').then((val) => {
       console.log('Yourname is', val);
       this.name.value = val;
@@ -71,6 +74,7 @@ async send(){
   }
 }
   async success() {
+    this.setval();
     const toast = await this.toastController.create({
       header: 'プロフィールを更新しました。',
       message: '',

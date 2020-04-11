@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 7***
+***version 7.3***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -15,6 +15,7 @@
  - [x] グループ
  - [x] Firefox/safari向けデザイン調整
  - [ ] グループ検索
+ - [x] プロフィールのリアルタイムプレビュー
  - [ ] グループ削除
  - [ ] グループアイコンの設定
  - [x] アプリからログイン

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-image',
   templateUrl: './image.page.html',
@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImagePage implements OnInit {
   fload: any;
-  constructor() { }
+  constructor(private mc:ModalController) { }
   ngOnInit() {
+  }
+  close(){
+    this.mc.dismiss();
   }
 finishload(){
 this.fload = true;

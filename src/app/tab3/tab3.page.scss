@@ -1,3 +1,46 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+.top {
+  text-align:left;
+  --background: transparent;
+  position: relative;
+  border-radius: 50px 5px 5px 50px;
+  width: 90%;
+  height: 100px;
+  box-shadow: 0 0 2rem #babbbc;
+  left: 0;
+  right: 0;
+  display: table;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 35px auto;
+}
+.topimg {
+  height: 100px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 0 .5rem #babbbc;
+  border: 5px solid #fafafa;
+  vertical-align: middle;
+  width:100px;
+  border-radius: 100px;
+}
+.name{
+  position: relative;
+  margin-left: 10px;
+  display:inline-block;
+  white-space:nowrap;
+  font-size: 25px;
+  vertical-align: middle;
+}
+.id{
+margin-left: 20px;
+}
+.n{
+  position: relative;
+margin-left: 10px;
+  display:inline-block;
+  white-space:nowrap;
+  vertical-align: middle;
+}

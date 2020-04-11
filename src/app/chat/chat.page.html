@@ -64,12 +64,12 @@
       </div>
 
         <div *ngIf="ary[9]" class="talk" [class.mes]="ary[0] === name">
-          <p>[image]</p>
+          <p style="white-space: nowrap;"> </p>
           <img [src]="ary[9]" style="border-radius: 10px;">
         </div>
 
         <div *ngIf="ary[11]" class="talk" [class.mes]="ary[0] === name">
-          <p>[Youtube]</p>
+          <p style="white-space: nowrap;"> </p>
           <iframe [src]="ary[11]" style="border-radius: 10px;" (load)="ytl()"></iframe>
           <ion-spinner *ngIf="ytloading"></ion-spinner>
         </div>
@@ -80,7 +80,7 @@
       <ion-input type="text" [(ngModel)]="inputv" placeholder="メッセージを入力.."></ion-input>
       <ion-button fill="clear" (click)="ytopen()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon  style="font-size: 24px;" name="logo-youtube"></ion-icon></ion-button>
       <ion-button fill="clear" (click)="GIF()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon  style="font-size: 24px;" name="shapes"></ion-icon></ion-button>
-      <input ion-button fill="clear" type="file" accept="image/*" style="height: 100%;width: 45px;opacity: 0;z-index: 3;position: absolute;right: 35px;" id="imgs"><ion-button fill="clear" style="color: #387EF6; z-index: -3; width: 45px;"><ion-icon style="font-size: 24px; " name="images"></ion-icon></ion-button>
+      <ion-button fill="clear" (click)="openimg()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon  style="font-size: 24px;" name="images"></ion-icon></ion-button>
       <ion-button fill="clear" (click)="send()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon  style="font-size: 24px;" name="send"></ion-icon></ion-button>
        <!-- <input style="color: transparent; position: relative; width: 100%; height: 100%;" type="file" accept="image/*">-->
   </ion-item>
