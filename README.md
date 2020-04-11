@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 8***
+***version 8.1***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -11,6 +11,7 @@
  - [x] オープンチャット
  - [x] GIF(GIPHY)
  - [x] 画像送信
+ - [x] シームレスな画像送信 
  - [x] GIF lazyLoading 
  - [x] グループ
  - [x] Firefox/safari向けデザイン調整

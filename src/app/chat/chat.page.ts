@@ -77,11 +77,11 @@ export class ChatPage {
     modal.onDidDismiss()
     .then((data) => {
       console.log(data);
-      /*if(data.data){
-        this.sendmsg('[yt]:' + data.data);
+      if(data.data){
+        this.sendmsg(data.data);
       } else {
         console.log('empty yt');
-      }*/
+      }
     });
     return await modal.present();
   }
