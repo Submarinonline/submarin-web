@@ -1,12 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      プロフィール設定
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content style="text-align: center;">
+  <div class="content">
+  <div class="top">
+    <img alt="" (error)="prevurl = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'" [src]="prevurl" class="topimg">
+    <div class="n">
+    <h1 class="name"> {{this.name}}</h1>
+    <h3 class="id">@{{this.tw}}</h3>
+    </div>
+  </div>
+  <div class="box" style="position: relative;width: 90%; left: 0; right: 0; margin: 0 auto;top: 70px; border-radius: 10px; padding-top: 10px;padding-bottom: 10px;">
+    <ion-list>
+      <ion-item>
+        <ion-label placeholder="ここに名前を入力..." position="floating" >名前</ion-label>
+        <ion-input [(ngModel)]=name></ion-input>
+      </ion-item>
+      <ion-item (click)="openimgsheet()" detail>
+        <ion-label>アイコンを変更</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label placeholder="ここにtwitterIDを入力..." position="floating">TwitterID</ion-label>
+        <ion-input [(ngModel)]="tw"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>過去のメッセージを100件まで表示する</ion-label>
+        <ion-checkbox [(ngModel)]="oldmessage"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
+  </div>  
+  </div>
   <svg class="editorial"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -28,34 +49,4 @@ d="M-160 44c30 0
 <use xlink:href="#gentle-wave" x="50" y="6" fill="#41ADEF"/>  
 </g>
 </svg>
-<div class="content">
-  <div class="top">
-    <img alt="" (error)="prevurl = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'" [src]="prevurl" class="topimg">
-    <div class="n">
-    <h1 class="name"> {{this.name}}</h1>
-    <h3 class="id">@{{this.tw}}</h3>
-    </div>
-  </div>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-
-    </ion-toolbar>
-  </ion-header>
-  <div class="box" style="position: relative;width: 90%; left: 0; right: 0; margin: 0 auto;top: 70px; border-radius: 10px; padding-top: 10px;padding-bottom: 10px;">
-  <ion-list>
-    <ion-item>
-      <ion-label placeholder="ここに名前を入力..." position="floating" >名前</ion-label>
-      <ion-input [(ngModel)]=name></ion-input>
-    </ion-item>
-    <ion-item (click)="openimgsheet()" detail>
-      <ion-label>アイコンを変更</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label placeholder="ここにtwitterIDを入力..." position="floating">TwitterID</ion-label>
-      <ion-input [(ngModel)]="tw"></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
-</div>  
-</div>
 </ion-content>

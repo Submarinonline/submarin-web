@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { ToastController } from '@ionic/angular';
+import { ToastController,PopoverController } from '@ionic/angular';
 @Component({
   selector: 'app-option',
   templateUrl: './option.component.html',
@@ -11,7 +11,7 @@ export class OptionComponent {
   notifytoggle: any;
   jptoggle: any;
   sleep: any;
-  constructor(private toastController:ToastController,private storage:Storage) { }
+  constructor(private po:PopoverController,private toastController:ToastController,private storage:Storage) { }
   
   async ionViewWillEnter() {
     this.sleep = msec => new Promise(resolve => setTimeout(resolve, msec));
@@ -39,6 +39,9 @@ export class OptionComponent {
     this.sleep(300);
     console.log(st);
     await this.storage.set('notifysound', st);
+  }
+  async showusr() {
+    this.po.dismiss('showuser');
   }
   async CJ() {
     var st;

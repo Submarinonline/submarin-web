@@ -12,6 +12,7 @@ import { ImagePage } from './../image/image.page';
 export class Tab3Page {
  tw: String;
 name: String;
+oldmessage: boolean;
  url: String;
 prevurl: String;
   constructor(public mc:ModalController,public ac: AlertController,private as:ActionSheetController,private storage: Storage, public toastController: ToastController) { }
@@ -95,6 +96,10 @@ prevurl: String;
       this.url = val;
       this.prevurl = val;
     });
+    await this.storage.get('oldmessage').then((val) => {
+      console.log('Your oldmessage is', val);
+      this.oldmessage = val;
+    });
     await this.storage.get('tw').then((val) => {
       console.log('Your twitterID is', val);
       this.tw = val;
@@ -102,6 +107,7 @@ prevurl: String;
   }
 async send(){
   console.log(this.tw);
+  this.storage.set('oldmessage', this.oldmessage);
   if (this.tw) {
     await this.storage.set('tw', this.tw);
     if (this.name && this.name.length < 20) {

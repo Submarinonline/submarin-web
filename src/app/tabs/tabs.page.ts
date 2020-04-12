@@ -45,6 +45,8 @@ export class TabsPage {
         this.firstdialog();
       } else if(Number(this.version) == Number(this.kdict["Version"])){
         console.log('最新バージョンを使用しています。');
+      } else {
+        this.errordialog();
       }
     });
   }
@@ -52,6 +54,29 @@ export class TabsPage {
     const alert = await this.alert.create({
       header: '旧バージョンを使用しています。',
       message: '旧バージョンのSubmarinが読み込まれています。機能の追加やバグの修正がされていない可能性があるため、リロードして更新することを推奨します。',
+      buttons: [
+        {
+          text: '無視',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'リロード',
+          handler: () => {
+            console.log('Confirm Okay');
+            window.location.reload(true);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  async errordialog() {
+    const alert = await this.alert.create({
+      header: '確認されていないバージョンを使用しています。',
+      message: '確認されていないバージョンのSubmarinが読み込まれています。開発者でない場合、リロードして更新することを推奨します。',
       buttons: [
         {
           text: '無視',

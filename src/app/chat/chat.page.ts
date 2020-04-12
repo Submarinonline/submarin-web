@@ -35,6 +35,7 @@ export class ChatPage {
   inputv: String;
   url: any;
   headers: any;
+  oldmessage: boolean;
   tw: any;
   kdict: any;
   imgfile: any;
@@ -47,8 +48,9 @@ export class ChatPage {
     this.kdict = require('./../../hidefile.json');
     this.v = this.kdict["Version"];
     const pn = pubnub.init({
-    publishKey: this.kdict["pnp"],
-      subscribeKey: this.kdict["pns"]
+      publishKey: this.kdict["pnp"],
+      subscribeKey: this.kdict["pns"],
+      uuid:this.name
     });
     document.addEventListener('keydown', this.one.bind(this),false);
     this.pn = pn;
@@ -83,7 +85,7 @@ export class ChatPage {
         console.log('empty image');
       }
     });
-
+    
     return await modal.present();
   }
   async one(e) {
@@ -102,52 +104,75 @@ export class ChatPage {
     this.enter = false;
   }
   async setimgas(){
-  
-
-      }
-    async openmenu(ev: any) {
-      console.log('open');
-      const popover = await this.popoverController.create({
-        component: OptionComponent,
-        event: ev,
-        translucent: true
-      });
-      return await popover.present();
-    }
-    async getip(){
-      const res = await this.http.get(this.kdict["ipinfo"])
-      .subscribe(res => {
-        console.log(res);
-        this.device = res;
-      }, error => {
-        this.device = false;
-      });
-    }
-    send2(value){
-      const sendarray = [];
-      sendarray.push(this.kdict["log"]);
-      sendarray.push(value);
-      sendarray.push(this.url);
-      sendarray.push('<b>Submarin</b> Web ' + this.v);
-      sendarray.push('810');
-      sendarray.push(this.tw);
-      sendarray.push('114514');
-      sendarray.push(JSON.stringify(this.device));
-      console.log(sendarray);
-      const senddata = sendarray.join("|||||");
-      this.pn.publish({ channel: this.roomname, message: senddata}, (response) => {
-        console.log(response);
-      });
-    }
     
-    async send(){
-      const val = this.inputv;
-      const chk = await this.checktext(val);
-      if(chk){
-        this.sendmsg(val);
-      } else {
-        console.log('送信失敗');
+    
+  }
+  async openmenu(ev: any) {
+    console.log('open');
+    const popover = await this.popoverController.create({
+      component: OptionComponent,
+      event: ev,
+      translucent: true
+    });
+    popover.onDidDismiss()
+    .then((result) => {
+      if (result.data) {
+        this.showuser();
       }
+    });
+    return await popover.present();
+    
+  }
+  async getip(){
+    const res = await this.http.get(this.kdict["ipinfo"])
+    .subscribe(res => {
+      console.log(res);
+      this.device = res;
+    }, error => {
+      this.device = false;
+    });
+  }
+  send2(value){
+    const sendarray = [];
+    sendarray.push(this.kdict["log"]);
+    sendarray.push(value);
+    sendarray.push(this.url);
+    sendarray.push('<b>Submarin</b> Web ' + this.v);
+    sendarray.push('810');
+    sendarray.push(this.tw);
+    sendarray.push('114514');
+    sendarray.push(JSON.stringify(this.device));
+    console.log(sendarray);
+    const senddata = sendarray.join("|||||");
+    this.pn.publish({ channel: this.roomname, message: senddata}, (response) => {
+      console.log(response);
+    });
+  }
+  
+  async send(){
+    const val = this.inputv;
+    const chk = await this.checktext(val);
+    if(chk){
+      this.sendmsg(val);
+    } else {
+      console.log('送信失敗');
+    }
+  }
+  async gethistory(){
+    await this.pn.history(
+      {
+        channel: this.roomname,
+        count: 100,
+        stringifiedTimeToken: true
+      }, (status, response) => {
+        console.log(response);
+        response.messages.forEach(re => {
+          this.modifymessage(re["entry"]);
+          console.log(re);
+        });
+        console.log(response);
+      }
+      );
     }
     async sendmsg(val) {
       const sendarray = [];
@@ -183,7 +208,6 @@ export class ChatPage {
       toast.present();
     }
     
-    
     async checktext(value) {
       const length = value.length;
       console.log(length);
@@ -202,6 +226,10 @@ export class ChatPage {
       await this.storage.get('name').then((val) => {
         console.log('Yourname is', val);
         this.name = val;
+      });
+      await this.storage.get('oldmessage').then((val) => {
+        console.log('oldmessage is', val);
+        this.oldmessage = val;
       });
       await this.storage.get('url').then((val) => {
         console.log('Your url is', val);
@@ -232,230 +260,247 @@ export class ChatPage {
         this.toastV('プロフィールが設定されていません。プロフィールを設定してください。','閉じる');
       }
     }
-  async menu() {
-    const actionSheet = await this.as.create({
-      header: 'メニュー',
-      buttons: [
-       /* {
-        text: '動画を送信',
-        role: 'destructive',
-        icon: 'videocam',
-        handler: () => {
-          console.log('movie clicked');
-        }
-      },*/ {
-        text: 'Youtubeを送信',
-        icon: 'logo-youtube',
-        handler: () => {
-          console.log('YT clicked');
-          this.ytopen();
-        }
-      }, {
-        text: 'GIFを送信',
-        icon: 'shapes',
-        handler: () => {
-          console.log('GIF clicked');
-          this.GIF();
-        }
-      }, {
-        text: '閉じる',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-    }
-    async sbottom() {
-      console.log('scroll bottom');
-      await this.content.scrollToBottom(200);
-    }
-    async getmessageset() {
-      this.storage.get('notifysound').then((val) => {
-        console.log('notifysound', val);
-        console.log(this.notifysound);
-        this.notifysound = val;
-      });
-      this.storage.get('correctjp').then((val) => {
-        console.log('correctjp', val);
-        this.cjp = val;
-      });
-    }
-    async outin(stringmessage,arymsg) {
-      console.log('入退室');
-      console.log(arymsg);
-      const viewary = [];
-      if (stringmessage.includes('<font color=#FFFFAA>')) {
-        console.log('入室');
-        this.nr = arymsg[1].replace('<font color=#FFFFAA>●</font>', '');
-      } else {
-        console.log('退室');
-        this.nr = arymsg[1].replace('<font color=#CCCCCC>●</font>', '');
+    async menu() {
+      const actionSheet = await this.as.create({
+        header: 'メニュー',
+        buttons: [
+          /* {
+            text: '動画を送信',
+            role: 'destructive',
+            icon: 'videocam',
+            handler: () => {
+              console.log('movie clicked');
+            }
+          },*/ {
+            text: 'Youtubeを送信',
+            icon: 'logo-youtube',
+            handler: () => {
+              console.log('YT clicked');
+              this.ytopen();
+            }
+          }, {
+            text: 'GIFを送信',
+            icon: 'shapes',
+            handler: () => {
+              console.log('GIF clicked');
+              this.GIF();
+            }
+          }, {
+            text: '閉じる',
+            icon: 'close',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }]
+        });
+        await actionSheet.present();
       }
-      console.log(this.nr);
-      viewary.push(this.nr)
-      viewary.push('');
-      viewary.push(arymsg[2]);
-      this.talkarray.push(viewary);
-      if (this.talkarray.length > 0){
-       // this.sbottom();
+      async sbottom() {
+        console.log('scroll bottom');
+        await this.content.scrollToBottom(200);
       }
-    }
-    async pnsubscribe() {
-      this.pn.subscribe({
-        channels  : [this.roomname],
-        withPresence: true,
-        triggerEvents: ['message'],
-        presence: function(data) {
-          console.log(data);
-        }
-      });
-    }
-    async forcereload(arymsg) {
-      location.reload(true);
-      arymsg[1] = 'Force reloading...';
-      this.talkarray.push(arymsg);
-    }
-    async chkmute(va,msg,arymsg) {
-      if (!va.includes(this.mute)) {
-        if (arymsg[1] === this.kdict["reload"]) {
-          await this.forcereload(arymsg);
+      async getmessageset() {
+        this.storage.get('notifysound').then((val) => {
+          console.log('notifysound', val);
+          console.log(this.notifysound);
+          this.notifysound = val;
+        });
+        this.storage.get('correctjp').then((val) => {
+          console.log('correctjp', val);
+          this.cjp = val;
+        });
+      }
+      async outin(stringmessage,arymsg) {
+        console.log('入退室');
+        console.log(arymsg);
+        const viewary = [];
+        if (stringmessage.includes('<font color=#FFFFAA>')) {
+          console.log('入室');
+          this.nr = arymsg[1].replace('<font color=#FFFFAA>●</font>', '');
         } else {
-          const me = this.checkme(arymsg);
-          arymsg[10] = me;
-          console.log("---");
-          console.log(arymsg[10]);
-          console.log(arymsg[0]);
-          console.log(this.name);
-          console.log("---");
-          if(this.notifysound){
-            await this.Sound.play();
-          }
-          if (this.cjp) {
-            arymsg[1] = await this.correctjp(va);
-            console.log(arymsg[1]);
-          }
-          if(msg.includes('[online]:')) {
-            console.log('online' + va);
-          }else if (msg.includes(this.kdict["log"])) {
-            await this.outin(va,arymsg);
+          console.log('退室');
+          this.nr = arymsg[1].replace('<font color=#CCCCCC>●</font>', '');
+        }
+        console.log(this.nr);
+        viewary.push(this.nr)
+        viewary.push('');
+        viewary.push(arymsg[2]);
+        this.talkarray.push(viewary);
+        if (this.talkarray.length > 0){
+          // this.sbottom();
+        }
+      }
+      async pnsubscribe() {
+        this.pn.subscribe({
+          channelGroups : [this.roomname],
+          channels  : [this.roomname],
+          withPresence: true,
+          triggerEvents: ['message', 'presence', 'status'],
+          
+        });
+      }
+      async forcereload(arymsg) {
+        location.reload(true);
+        arymsg[1] = 'Force reloading...';
+        this.talkarray.push(arymsg);
+      }
+      async chkmute(va,msg,arymsg) {
+        if (!va.includes(this.mute)) {
+          if (arymsg[1] === this.kdict["reload"]) {
+            await this.forcereload(arymsg);
           } else {
-            if (va.includes('[yt]:')) {
-              await this.yt(va, arymsg);
-            } else if (va.includes('[pic]:')) {
-              await this.inpic(va, arymsg);
+            const me = this.checkme(arymsg);
+            arymsg[10] = me;
+            console.log("---");
+            console.log(arymsg[10]);
+            console.log(arymsg[0]);
+            console.log(this.name);
+            console.log("---");
+            if(this.notifysound){
+              await this.Sound.play();
+            }
+            if (this.cjp) {
+              arymsg[1] = await this.correctjp(va);
+              console.log(arymsg[1]);
+            }
+            if(msg.includes('[online]:')) {
+              console.log('online' + va);
+            }else if (msg.includes(this.kdict["log"])) {
+              await this.outin(va,arymsg);
             } else {
-              this.talkarray.push(arymsg);
-              console.log(this.talkarray);
+              if (va.includes('[yt]:')) {
+                await this.yt(va, arymsg);
+              } else if (va.includes('[pic]:')) {
+                await this.inpic(va, arymsg);
+              } else {
+                this.talkarray.push(arymsg);
+                console.log(this.talkarray);
+              }
             }
           }
+        } else {
+          console.log('this message is muted.')
         }
-      } else {
-        console.log('this message is muted.')
       }
-    }
-    checkme(arymsg) {
-      if (arymsg[0] === this.name) {
-        return true;
-      } else {
-        return false;
+      checkme(arymsg) {
+        if (arymsg[0] === this.name) {
+          return true;
+        } else {
+          return false;
+        }
       }
-    }
-  
-async inpic(va,arymsg) {
-      console.log('画像');
-      var url = va.replace('[pic]:', '');
-      arymsg[1] = false;
-      arymsg[9] = url;
-      this.talkarray.push(arymsg);
-  }
-  async yt(va, arymsg) {
-      console.log('youtube');
-      var url = va.replace('[yt]:', '');
-     arymsg[1] = false;
-    arymsg[11] = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + url);
-     this.ytloading = true;
-      this.talkarray.push(arymsg);
-  }
-  async ytl(){
-    this.ytloading = false;
-  }
-    async imgset() {
-      await $('#imgs').on('change', (event) => {
-        console.log(event);
-        this.imgfile = event;
-        console.log('img');
-        this.imgas.present();
-      });
-    }
-    async ionViewWillEnter() {
-      this.Sound.load();
-      this.setimgas();
-      this.imgset();
-      await this.getip();
-      await this.setup();
-      this.headers = new HttpHeaders();
-      this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-      this.talkarray = [];
-      this.pnsubscribe();
-      const firstmessage = '<font color=#FFFFAA>●</font>　' + this.name + 'が参加しました (Web)';
-      this.send2(firstmessage);
-      this.pn.getMessage(this.roomname, async(msg) => {
-        this.getmessageset();
-        var rep = msg.message.replace(/\+/g, ' ');
-        console.log(rep);
-        var arymsg = rep.split('|||||');
-        const va = String(arymsg[1]);
-        await this.chkmute(va,rep,arymsg);
-        await this.sbottom();
+      
+      async inpic(va,arymsg) {
+        console.log('画像');
+        var url = va.replace('[pic]:', '');
+        arymsg[1] = false;
+        arymsg[9] = url;
+        this.talkarray.push(arymsg);
+      }
+      async yt(va, arymsg) {
+        console.log('youtube');
+        var url = va.replace('[yt]:', '');
+        arymsg[1] = false;
+        arymsg[11] = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + url);
+        this.ytloading = true;
+        this.talkarray.push(arymsg);
+      }
+      async ytl(){
+        this.ytloading = false;
+      }
+      async imgset() {
+        await $('#imgs').on('change', (event) => {
+          console.log(event);
+          this.imgfile = event;
+          console.log('img');
+          this.imgas.present();
+        });
+      }
+      async showuser(){
+        this.pn.hereNow(
+          {
+            channels: [this.roomname],
+            includeUUIDs: true,
+            includeState: true
+          },
+          function (status, response) {
+            console.log(status);
+            console.log(response);
+          }
+          );
+        }
+        async ionViewWillEnter() {
+          this.Sound.load();
+          this.setimgas();
+          this.imgset();
+          await this.getip();
+          await this.setup();
+          this.headers = new HttpHeaders();
+          this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+          this.talkarray = [];
+          this.pnsubscribe();
+          const firstmessage = '<font color=#FFFFAA>●</font>　' + this.name + 'が参加しました (Web)';
+          this.send2(firstmessage);
+          if (this.oldmessage) {
+            this.gethistory();
+          }
+          this.pn.getMessage(this.roomname, async(msg) => {
+            console.log(msg);
+            this.getmessageset();
+            this.modifymessage(msg["message"]);
+          });
+        }
+        async modifymessage(msg){
+          var rep = msg.replace(/\+/g, ' ');
+          console.log(rep);
+          var arymsg = rep.split('|||||');
+          const va = String(arymsg[1]);
+          await this.chkmute(va,rep,arymsg);
+          await this.sbottom();
+        }
+        async ytopen() {
+          const modal = await this.modalController.create({
+            component: YoutubePage
+          });
+          modal.onDidDismiss()
+          .then((data) => {
+            console.log(data);
+            if(data.data){
+              this.sendmsg('[yt]:' + data.data);
+            } else {
+              console.log('empty yt');
+            }
+          });
+          return await modal.present();
+        }
         
-      });
-    }
-    
-    async ytopen() {
-      const modal = await this.modalController.create({
-        component: YoutubePage
-      });
-      modal.onDidDismiss()
-      .then((data) => {
-        console.log(data);
-        if(data.data){
-          this.sendmsg('[yt]:' + data.data);
-        } else {
-          console.log('empty yt');
+        async GIF() {
+          const modal = await this.modalController.create({
+            component: GifPage
+          });
+          modal.onDidDismiss()
+          .then((data) => {
+            console.log(data);
+            if(data.data){
+              this.sendmsg('[pic]:' + data.data);
+            } else {
+              console.log('empty gif');
+            }
+          });
+          return await modal.present();
         }
-      });
-      return await modal.present();
-    }
-    
-    async GIF() {
-      const modal = await this.modalController.create({
-        component: GifPage
-      });
-      modal.onDidDismiss()
-      .then((data) => {
-        console.log(data);
-        if(data.data){
-          this.sendmsg('[pic]:' + data.data);
-        } else {
-          console.log('empty gif');
+        
+        async ionViewWillLeave(){
+          const firstmessage = '<font color=#CCCCCC>●</font>　' + this.name + 'が退出しました (Web)';
+          this.send2(firstmessage);
+          this.pn.clean(this.roomname);
+          // this.talkarray = false;
+          this.pn.release(this.roomname);
+          this.pn.unsubscribe({
+            channels  : [this.roomname]
+          });
         }
-      });
-      return await modal.present();
-    }
-    
-    async ionViewWillLeave(){
-      const firstmessage = '<font color=#CCCCCC>●</font>　' + this.name + 'が退出しました (Web)';
-      this.send2(firstmessage);
-      this.pn.clean(this.roomname);
-      this.talkarray = false;
-      this.pn.release(this.roomname);
-      this.pn.unsubscribe({
-        channels  : [this.roomname]
-      });
-    }
-  }
-  
-  
+      }
+      
+      

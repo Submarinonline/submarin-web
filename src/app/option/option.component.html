@@ -10,5 +10,8 @@
     <ion-item>
       <ion-label>怪レい日本語</ion-label>
       <ion-checkbox [(ngModel)]="jptoggle" (click)="CJ()"></ion-checkbox>
-      </ion-item>
+    </ion-item>
+    <ion-item button (click)="showusr()" detail>
+      <ion-label>現在のユーザー数を表示</ion-label>
+    </ion-item>
   </ion-list>
