@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 8.6***
+***version 8.7***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -29,7 +29,7 @@
  - [ ] リンク表示/OGP対応
  - [x] バージョン変数
  - [x] キーを別ファイルに保存
- - [ ] アプデ確認
+ - [x] アプデ確認
  - [ ] メンション
  - [ ] push通知
  - [x] 通知音

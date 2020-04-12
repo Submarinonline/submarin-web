@@ -24,7 +24,7 @@ animation:move-forever 12s linear infinite;
 }
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@700&display=swap');
 .editorial{
-  background-color:  #fff;
+  background-color:  var(--ion-background-color);
 }
 .content{
   padding: 10px;
