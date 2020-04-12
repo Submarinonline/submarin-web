@@ -6,7 +6,8 @@ import { ImagePage } from './../image/image.page';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
+  styles:[`host: { 'style':'line-height: 0'}`]
 })
 export class Tab3Page {
  tw: String;

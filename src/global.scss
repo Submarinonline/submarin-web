@@ -24,13 +24,25 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
+:root{
+    --ion-toolbar-background: #fff;
+    }
+@media (prefers-color-scheme: light) {
+:root{
+    --ion-toolbar-background: #fff;
+    }
+}
+@media (prefers-color-scheme: no-preference) {
+    :root{
+        --ion-toolbar-background: #fff;
+        }
+    }
 @media (prefers-color-scheme: dark) {
-  /*
-   * Dark Colors
-   * -------------------------------------------
-   */
-  
+    :root{
+        --ion-toolbar-background: #1A1B1E;
+        }
+    }
+@media (prefers-color-scheme: dark) {
   body {
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
@@ -127,9 +139,7 @@
     --ion-color-step-850: #d9d9d9;
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
-  
     --ion-toolbar-background: #0d0d0d;
-  
     --ion-item-background: #1c1c1c;
     --ion-item-background-activated: #313131;
   }
@@ -202,7 +212,7 @@ time, mark, audio, video {
     outline:0;
     font-size:100%;
     vertical-align:baseline;
-    background:transparent;
+  /*  background:transparent;*/
 }
 
 body {

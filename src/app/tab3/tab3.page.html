@@ -7,6 +7,28 @@
 </ion-header>
 
 <ion-content style="text-align: center;">
+  <svg class="editorial"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 24 150 28"
+  style="margin-bottom: 0px;"
+  preserveAspectRatio="none">
+<defs>
+<path id="gentle-wave"
+d="M-160 44c30 0 
+ 58-18 88-18s
+ 58 18 88 18 
+ 58-18 88-18 
+ 58 18 88 18
+ v44h-352z" />
+</defs>
+<g class="parallax">
+<use xlink:href="#gentle-wave" x="50" y="0" fill="#95cced"/>
+<use xlink:href="#gentle-wave" x="50" y="3" fill="#51b2ed"/>
+<use xlink:href="#gentle-wave" x="50" y="6" fill="#41ADEF"/>  
+</g>
+</svg>
+<div class="content">
   <div class="top">
     <img alt="" (error)="prevurl = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'" [src]="prevurl" class="topimg">
     <div class="n">
@@ -16,9 +38,10 @@
   </div>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title style="margin-top: 5px;" size="large">プロフィール設定</ion-title>
+
     </ion-toolbar>
   </ion-header>
+  <div class="box" style="position: relative;width: 90%; left: 0; right: 0; margin: 0 auto;top: 70px; border-radius: 10px; padding-top: 10px;padding-bottom: 10px;">
   <ion-list>
     <ion-item>
       <ion-label placeholder="ここに名前を入力..." position="floating" >名前</ion-label>
@@ -33,5 +56,6 @@
     </ion-item>
   </ion-list>
   <ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
-  
+</div>  
+</div>
 </ion-content>

@@ -1,8 +1,11 @@
 ion-toolbar {
   --background: translucent;
 }
+body {
+  line-height: 0;
+}
 ion-content{
- --background: #41ADEF;
+ --background:#41ADEF;
 }
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 ::selection{background-color: salmon; color: white;}
@@ -50,6 +53,7 @@ font-size: 1em;
 */
 .content{
   text-align:center;
+  background-color: #41ADEF;
 }
 .content h1 {
 margin-top:-1.3em;

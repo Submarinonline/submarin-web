@@ -232,6 +232,42 @@ export class ChatPage {
         this.toastV('プロフィールが設定されていません。プロフィールを設定してください。','閉じる');
       }
     }
+  async menu() {
+    const actionSheet = await this.as.create({
+      header: 'メニュー',
+      buttons: [
+       /* {
+        text: '動画を送信',
+        role: 'destructive',
+        icon: 'videocam',
+        handler: () => {
+          console.log('movie clicked');
+        }
+      },*/ {
+        text: 'Youtubeを送信',
+        icon: 'logo-youtube',
+        handler: () => {
+          console.log('YT clicked');
+          this.ytopen();
+        }
+      }, {
+        text: 'GIFを送信',
+        icon: 'shapes',
+        handler: () => {
+          console.log('GIF clicked');
+          this.GIF();
+        }
+      }, {
+        text: '閉じる',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+    }
     async sbottom() {
       console.log('scroll bottom');
       await this.content.scrollToBottom(200);
@@ -368,10 +404,11 @@ async inpic(va,arymsg) {
       this.send2(firstmessage);
       this.pn.getMessage(this.roomname, async(msg) => {
         this.getmessageset();
-        var rep = msg.message.replace('+', ' ');
+        var rep = msg.message.replace(/\+/g, ' ');
+        console.log(rep);
         var arymsg = rep.split('|||||');
         const va = String(arymsg[1]);
-        await this.chkmute(va,msg.message,arymsg);
+        await this.chkmute(va,rep,arymsg);
         await this.sbottom();
         
       });
