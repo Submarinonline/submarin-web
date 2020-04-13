@@ -73,9 +73,18 @@
           <iframe [src]="ary[11]" style="border-radius: 10px;" (load)="ytl()"></iframe>
           <ion-spinner *ngIf="ytloading"></ion-spinner>
         </div>
-
+        <div *ngIf="ary[12]" class="talk" [class.mes]="ary[0] === name">
+          <p style="white-space: nowrap;"> </p>
+        <video src="{{ary[12]}}"></video>
+       </div>
+       <div *ngIf="ary[13]" class="talk" [class.mes]="ary[0] === name">
+        <p style="white-space: nowrap;"> </p>
+        <audio>
+      <source src="{{ary[13]}}">
+        </audio>
+     </div>
+       </div>
     </div>
-  </div>
   <ion-item style="position: fixed; bottom: 0; width: 100%;">
       <ion-input type="text" [(ngModel)]="inputv" placeholder="メッセージを入力.."></ion-input>
       <ion-button fill="clear" (click)="menu()" style="height: 100%; margin-right: 0px; width: 45px;"><ion-icon name="ellipsis-horizontal"></ion-icon></ion-button>

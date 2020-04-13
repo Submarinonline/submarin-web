@@ -19,7 +19,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
   entryComponents: [],
   exports:[HttpClientModule],
   imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), FormsModule, AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-  AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [NavParams,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },PubNubAngular,AngularFireDatabase,Push],
   bootstrap: [AppComponent],

@@ -11,6 +11,7 @@ import { GifPage } from './../gif/gif.page';
 import { YoutubePage } from './../youtube/youtube.page';
 import { ImagePage } from './../image/image.page';
 declare var $;
+declare var Player;
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
@@ -19,7 +20,7 @@ declare var $;
 
 export class ChatPage {
   roomname:any;
-  pn:any;
+  pn: any;
   ytloading: boolean;
   title: any;
   imgas: any;
@@ -373,7 +374,11 @@ export class ChatPage {
                 await this.yt(va, arymsg);
               } else if (va.includes('[pic]:')) {
                 await this.inpic(va, arymsg);
-              } else {
+              } else if (va.includes('[vid]:')) {
+                await this.vid(va,arymsg);
+              } else if (va.includes('[audio]:')) {
+                await this.audio(va,arymsg);
+              }else {
                 this.talkarray.push(arymsg);
                 console.log(this.talkarray);
               }
@@ -390,7 +395,29 @@ export class ChatPage {
           return false;
         }
       }
-      
+      uniquerandom(){
+        var l = 8;
+// 生成する文字列に含める文字セット
+var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+var cl = c.length;
+var r = "";
+for(var i=0; i<l; i++){
+    r += c[Math.floor(Math.random()*cl)];
+}
+        return r;
+      }
+      async vid(va,arymsg) {
+        var url = va.replace('[vid]:', '');
+        arymsg[1] = false;
+        arymsg[12] = url;
+        this.talkarray.push(arymsg);
+      }
+      async audio(va,arymsg) {
+        var url = va.replace('[audio]:', '');
+        arymsg[1] = false;
+        arymsg[13] = url;
+        this.talkarray.push(arymsg);
+      }
       async inpic(va,arymsg) {
         console.log('画像');
         var url = va.replace('[pic]:', '');
