@@ -7,7 +7,7 @@
             <v-icon>mdi-account</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            Online Users {{onlineUsers[0]}}
+            オンラインのユーザー {{onlineUsers[0]}}
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -25,7 +25,7 @@
     <v-app-bar app class="light-blue darken-1">
       <v-app-bar-nav-icon @click.native.stop="drawerToggle = !drawerToggle"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <router-link to="/chat/0" tag="span" style="cursor: pointer">Vuetify Chat</router-link>
+        <router-link to="/chat/0" tag="span" style="cursor: pointer">Submarin</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-for="item in menuItems" v-bind:key="item.route">
@@ -51,8 +51,8 @@
     computed: {
       menuItems () {
         let items = [
-          { icon: 'mdi-face', title: 'Register', route: '/register' },
-          { icon: 'mdi-lock-open', title: 'Login', route: '/login' }
+          { icon: 'mdi-face', title: '登録', route: '/register' },
+          { icon: 'mdi-lock-open', title: 'ログイン', route: '/login' }
         ]
         if (this.userIsAuthenticated) {
           items = [

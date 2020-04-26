@@ -16,11 +16,14 @@ new Vue({
   render: h => h(App),
   created () {
     firebase.initializeApp({
-      apiKey: 'AIzaSyBiqUbF0rN5LUD9G9msHN4xHF3f00MpOFE',
-      authDomain: 'mutfak-chat.firebaseapp.com',
-      databaseURL: 'https://mutfak-chat.firebaseio.com',
-      projectId: 'mutfak-chat',
-      storageBucket: 'mutfak-chat.appspot.com'
+      apiKey: "AIzaSyDP4XqmXTZixszR96PcS1alvijTU2U2xZs",
+      authDomain: "submarin-web.firebaseapp.com",
+      databaseURL: "https://submarin-web.firebaseio.com",
+      projectId: "submarin-web",
+      storageBucket: "submarin-web.appspot.com",
+      messagingSenderId: "1080856965224",
+      appId: "1:1080856965224:web:3a55046f12d554f7eb0bdd",
+      measurementId: "G-CNMYGBEF91"
     })
   }
 }).$mount('#app')
