@@ -10,6 +10,9 @@
         <v-card>
           <v-card-text>
             <v-container>
+              <v-btn block color="#1DA1F2" outlined style="margin-bottom: 2px;"><v-icon color="#1DA1F2">mdi-twitter</v-icon>でログイン</v-btn>
+               <v-btn block color="#DB4437" outlined style="margin-bottom: 2px;"><v-icon color="#DB4437">mdi-google</v-icon>でログイン</v-btn>
+                <v-btn block outlined style="margin-bottom: 2px;"><v-icon >mdi-phone</v-icon>でログイン</v-btn>
               <form @submit.prevent="onSignin">
                 <v-layout row>
                   <v-flex xs12>

@@ -1,6 +1,20 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+::selection{background-color: salmon; color: white;}
+.parallax > use{
+animation:move-forever 12s linear infinite;
+/*&:nth-child(1){animation-delay:-2s;}
+&:nth-child(2){animation-delay:-2s; animation-duration:5s}
+&:nth-child(3){animation-delay:-4s; animation-duration:3s}*/
+}
+@keyframes move-forever{
+0%{transform: translate(-90px , 0%)}
+100%{transform: translate(85px , 0%)} 
+}
+</style>
 <template>
   <v-app>
-    <v-navigation-drawer absolute temporary v-model="drawerToggle">
+    <v-navigation-drawer color="#fff" absolute temporary v-model="drawerToggle">
       <v-list>
         <v-list-item>
           <v-list-item-action>
@@ -22,18 +36,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app class="light-blue darken-1">
+    <v-app-bar flat app src="@/assets/wave.svg">
       <v-app-bar-nav-icon @click.native.stop="drawerToggle = !drawerToggle"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <router-link to="/chat/0" tag="span" style="cursor: pointer">Submarin</router-link>
+        <router-link to="/chat/0" tag="span" style="cursor: pointer"><v-img height="40" width="40" src="@/assets/iconw.png"></v-img></router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items v-for="item in menuItems" v-bind:key="item.route">
-        <v-btn text :key="item.title" :to="item.route">
-          <v-icon left>{{ item.icon }}</v-icon>
-          <div class="hidden-xs-only">{{ item.title }}</div>
-        </v-btn>
-      </v-toolbar-items>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
@@ -42,11 +50,17 @@
 </template>
 
 <script>
+import VueHead from 'vue-head'
   export default {
     data () {
       return {
         drawerToggle: false
       }
+    },
+    head:{
+      link: [
+        {rel: 'stylesheet',href:'https://fonts.googleapis.com/css?family=Comfortaa'}
+      ]
     },
     computed: {
       menuItems () {

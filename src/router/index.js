@@ -7,8 +7,8 @@ import ChatList from '@/components/Chat/ChatList'
 import Profile from '@/components/User/Profile'
 import Signup from '@/components/User/Signup'
 import Signin from '@/components/User/Signin'
+import Top from '@/components/Top'
 import AuthGuard from './auth-guard'
-
 Vue.use(Router)
 
 export default new Router({
@@ -52,7 +52,13 @@ export default new Router({
       name: 'JoinChat',
       component: ChatList,
       beforeEnter: AuthGuard
-    }
+    },
+    {
+      path: '/top',
+      name: 'Top',
+      component: Top,
+    //  beforeEnter: AuthGuard
+    },
   ],
   mode: 'history'
 })
