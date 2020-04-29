@@ -5,7 +5,7 @@
     <div style="color: #fff; font-weight: bold; margin-bottom: 10px;"><v-icon color="white">mdi-package-variant</v-icon>10.0</div>
 <v-tabs
   centered
-     style="text-align: center; width: 80%; left: 0; right: 0; margin: auto; border-radius: 10px 10px 0px 0px;"
+     style="text-align: center; width: 80%; left: 0; right: 0; margin:auto; border-radius: 10px 10px 0px 0px;"
       icons-and-text
 >
   <v-tab ripple>

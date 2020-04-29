@@ -26,12 +26,12 @@ animation:move-forever 12s linear infinite;
         </v-list-item>
       </v-list>
       <v-list >
-        <v-list-item avatar v-for="user in onlineUsers[1]" v-bind:key="user.user.username">
+        <v-list-item avatar v-for="user in onlineUsers[1]" v-bind:key="user.userinfo.Name">
           <v-list-item-avatar>
             <img src="https://randomuser.me/api/portraits/men/85.jpg" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>{{user.user.username}}</v-list-item-title>
+            <v-list-item-title>{{user.userinfo.Name}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

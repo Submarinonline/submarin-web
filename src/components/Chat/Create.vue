@@ -6,12 +6,12 @@
           <v-col xs="12">
             <v-text-field
               name="chatname"
-              label="Chat Name"
+              label="チャンネル名を入力..."
               id="chatname"
               v-model="chatName"
               type="text"
               required></v-text-field>
-            <v-btn type="submit">Create</v-btn>
+            <v-btn type="submit">作成</v-btn>
           </v-col>
         </form>
       </v-col>
@@ -39,16 +39,14 @@
         if (this.chatName == '' || this.loading) {
           return
         }
-
         this.loading = true
-
         let time = new Date().valueOf()
         let newPostKey = firebase.database().ref().child('chats').push().key
 
         let updates = {}
         updates['/chats/' + newPostKey] = {name: this.chatName}
-        updates['/chat_members/' + newPostKey + '/users/' + this.user.id] = {timestamp: time}
-        updates['users/' + this.user.id + '/chats/' + newPostKey] = {timestamp: time}
+        updates['/chat_members/' + newPostKey + '/users/' + this.user.uid] = {timestamp: time}
+        updates['users/' + this.user.uid + '/chats/' + newPostKey] = {timestamp: time}
         firebase.database().ref().update(updates).then(() => {
           this.loading = false
           this.$router.push('/chat/' + newPostKey)

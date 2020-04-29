@@ -1,18 +1,51 @@
 <template>
   <v-container v-on:scroll="onScroll" ref="chatlistContainer">
+     <div class="text-end">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <template v-slot:activator="{ on }">
+        <v-btn
+          text
+          v-on="on"
+          color="blue"
+        >
+        <v-icon>mdi-plus</v-icon>
+          新規チャンネルを作成
+        </v-btn>
+      </template>
+
+      <v-card>
+      <create></create>
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+          　キャンセル
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
     <v-row no-gutters>
-      <v-col v-for="chat in chats" :key="chat.name" cols="12" sm="4">
-        <v-card class="mx-auto" max-width="344" outlined>
+      <v-col v-for="chat in chats" :key="chat.name" cols="12" sm="4" style="margin: 5px;">
+        <v-card class="mx-auto" max-width="344">
           <v-list-item three-line>
             <v-list-item-content>
               <div class="overline mb-4">{{chat.key}}</div>
               <v-list-item-title class="headline mb-1">{{chat.name}}</v-list-item-title>
-              <v-list-item-subtitle v-if="chat.userCount != null">{{chat.userCount}} members have joined this chat.</v-list-item-subtitle>
-              <v-list-item-subtitle v-else>Loading user count...</v-list-item-subtitle>
+              <v-list-item-subtitle v-if="chat.userCount != null"><v-icon>mdi-account-multiple</v-icon>{{chat.userCount}} </v-list-item-subtitle>
+              <v-list-item-subtitle v-else>ユーザー数を読み込み中...</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>
-            <v-btn text @click="enterChat(chat)" v-if="!chat.isAlreadyJoined && chat.userCount != null">Join</v-btn>
+            <v-btn text @click="enterChat(chat)" v-if="!chat.isAlreadyJoined && chat.userCount != null">参加</v-btn>
             <v-btn text disabled v-if="chat.isAlreadyJoined">Joined</v-btn>
           </v-card-actions>
         </v-card>
@@ -23,12 +56,16 @@
 
 <script>
 import * as firebase from 'firebase'
-
+import Create from './Create';
 export default {
+  components:{
+    'create':Create
+  },
   data () {
     return {
       loadedChats: [],
-      loading: false
+      loading: false,
+      dialog: false
     }
   },
   mounted () {
