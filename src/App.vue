@@ -36,10 +36,30 @@ animation:move-forever 12s linear infinite;
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar flat app src="@/assets/wave.svg">
-      <v-app-bar-nav-icon @click.native.stop="drawerToggle = !drawerToggle"></v-app-bar-nav-icon>
+       <svg style="position: absolute; width: 100%; z-index: 1;height:56px;" class="editorial"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28"
+    preserveAspectRatio="none">
+<defs>
+<path id="gentle-wave"
+d="M-160 44c30 0 
+   58-18 88-18s
+   58 18 88 18 
+   58-18 88-18 
+   58 18 88 18
+   v44h-352z" />
+ </defs>
+ <g class="parallax">
+  <use xlink:href="#gentle-wave" x="50" y="0" fill="#95cced"/>
+  <use xlink:href="#gentle-wave" x="50" y="3" fill="#51b2ed"/>
+  <use xlink:href="#gentle-wave" x="50" y="6" fill="#41ADEF"/>  
+ </g>
+</svg>
+    <v-app-bar short flat app style="z-index: 2; background: transparent;">
+      <v-app-bar-nav-icon color="#606060" @click.native.stop="drawerToggle = !drawerToggle"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <router-link to="/chat/0" tag="span" style="cursor: pointer"><v-img height="40" width="40" src="@/assets/iconw.png"></v-img></router-link>
+        <router-link to="/chat/0" tag="span" style="cursor: pointer"><v-img height="40" width="40" src="@/assets/512.png"></v-img></router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>

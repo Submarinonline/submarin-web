@@ -1,5 +1,21 @@
 <template>
   <v-container fluid style="padding: 0;">
+    <v-bottom-sheet v-model="Panel">
+      <v-list>
+        <v-list-item
+          v-for="tile in tiles"
+          :key="tile.title"
+          @click="Panel = false"
+        >
+          <v-list-item-avatar>
+            <v-avatar size="32px" tile>
+              <v-icon>mdi-{{tile.icon}}</v-icon>
+            </v-avatar>
+          </v-list-item-avatar>
+          <v-list-item-title>{{ tile.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-bottom-sheet>
     <v-row no-gutters>
     <!--<v-col sm="2" class="scrollable">
         <chats></chats>
@@ -11,8 +27,8 @@
         </div>
         <div class="typer">
           <input type="text" placeholder="ここに入力..." v-on:keyup.enter="sendMessage" v-model="content">
-          <v-btn icon class="blue--text emoji-panel" @click="toggleEmojiPanel">
-            <v-icon>mdi-emoticon-outline</v-icon>
+          <v-btn icon class="blue--text" style=" margin: 5px;font-size: 26px;" @click="togglePanel">
+            <v-icon>mdi-dots-horizontal-circle-outline</v-icon>
           </v-btn>
         </div>
       </v-col>
@@ -30,10 +46,15 @@
       return {
         content: '',
         chatMessages: [],
-        emojiPanel: false,
+        Panel: false,
         currentRef: {},
         loading: false,
-        totalChatHeight: 0
+        totalChatHeight: 0,
+        tiles: [
+        { icon: 'gif', title: 'GIF' },
+        { icon: 'youtube', title: 'Youtube' },
+        { icon: 'image', title: '画像' },
+      ],
       }
     },
     props: [
@@ -164,8 +185,8 @@
       addEmojiToMessage (emoji) {
         this.content += emoji.value
       },
-      toggleEmojiPanel () {
-        this.emojiPanel = !this.emojiPanel
+      togglePanel () {
+        this.Panel = !this.Panel
       }
     }
   }
@@ -181,7 +202,6 @@
     display: flex;
     align-items: center;
     bottom: 0;
-    height: 4.9rem;
     width: 100%;
     background-color: #fff;
     box-shadow: 0 -5px 10px -5px rgba(0,0,0,.2);
@@ -191,6 +211,7 @@
     left: 2.5rem;
     padding: 1rem;
     width: 80%;
+    height: 1.2rem;
     background-color: transparent;
     border: none;
     outline: none;
@@ -198,7 +219,7 @@
   }
   .chat-container{
     box-sizing: border-box;
-    height: calc(100vh - 9.5rem);
+    height: calc(100vh - 6.8rem);
     overflow-y: auto;
     padding: 10px;
     background-color: #f2f2f2;

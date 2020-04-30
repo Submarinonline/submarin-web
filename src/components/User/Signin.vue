@@ -31,15 +31,12 @@
     </v-layout>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card flat>
-          <v-card-text>
-            <v-container>
-              <v-btn :loading="loader" block color="#1DA1F2" style="margin-bottom: 2px; color: #fff;" @click="Twitter"><v-icon color="#fff">mdi-twitter</v-icon>でログイン</v-btn>
+
+              <v-btn :loading="loader" block color="#fff" style="position: relative; left:0; right: 0; bottom: 0; margin: auto;margin-bottom: 2px; color: #1DA1F2; min-height: 50px; width: 80%;" @click="Twitter"><v-icon color="#1DA1F2">mdi-twitter</v-icon>でログイン</v-btn>
+              <b style="font-weight: 100; color: #fff;">または</b>
+               <v-btn block color="#28292b" style="position: relative; left:0; right: 0; bottom: 0; margin: auto;margin-bottom: 2px; color: #fff; min-height: 50px; width: 80%;" href="https://play.google.com/store/apps/details?id=com.shenyusoftware.submarin"><v-icon color="#fff">mdi-google-play</v-icon>からダウンロード</v-btn>
                <!--<v-btn block color="#DB4437" outlined style="margin-bottom: 2px;"><v-icon color="#DB4437">mdi-google</v-icon>でログイン</v-btn>
                 <v-btn block outlined style="margin-bottom: 2px;"><v-icon >mdi-phone</v-icon>でログイン</v-btn>-->
-            </v-container>
-          </v-card-text>
-        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
