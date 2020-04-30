@@ -1,5 +1,37 @@
 <template>
   <v-container>
+    <div class="text-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="red lighten-2"
+          dark
+          v-on="on"
+        >
+          DEBUG
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title></v-card-title>
+        <v-card-text>
+        エラーが発生しました。アカウントが無効になっていないか確認し、再度お試しください。
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            閉じる
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
     <v-layout row v-if="error">
       <v-flex xs12 sm6 offset-sm3>
         <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
@@ -10,9 +42,9 @@
         <v-card flat>
           <v-card-text>
             <v-container>
-              <v-btn block color="#1DA1F2" outlined style="margin-bottom: 2px;" @click="Twitter"><v-icon color="#1DA1F2">mdi-twitter</v-icon>でログイン</v-btn>
-               <v-btn block color="#DB4437" outlined style="margin-bottom: 2px;"><v-icon color="#DB4437">mdi-google</v-icon>でログイン</v-btn>
-                <v-btn block outlined style="margin-bottom: 2px;"><v-icon >mdi-phone</v-icon>でログイン</v-btn>
+              <v-btn :loading="loader" block color="#1DA1F2" style="margin-bottom: 2px; color: #fff;" @click="Twitter"><v-icon color="#fff">mdi-twitter</v-icon>でログイン</v-btn>
+               <!--<v-btn block color="#DB4437" outlined style="margin-bottom: 2px;"><v-icon color="#DB4437">mdi-google</v-icon>でログイン</v-btn>
+                <v-btn block outlined style="margin-bottom: 2px;"><v-icon >mdi-phone</v-icon>でログイン</v-btn>-->
             </v-container>
           </v-card-text>
         </v-card>
@@ -28,7 +60,9 @@ import router from "vue-router";
     data () {
       return {
         email: '',
-        password: ''
+        password: '',
+        loader: false,
+        dialog: false
       }
     },
     computed: {
@@ -44,26 +78,40 @@ import router from "vue-router";
     },
     methods: {
        Twitter: function() {
+         this.loader = true;
       var provider = new firebase.auth.TwitterAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
         .then(
           result => {
-            var token = result.credential.token;
-            var secret = result.credential.secret;
-            var user = result.user;
+            var token;
+            var secret;
+            var user;
+            try{
+            token = result.credential.token;
+            secret = result.credential.secret;
+            user = result.user;
+            } catch {
+              this.dialog = true;
+              this.loader = false;
+            }
             if (user) {
               console.log(user);
               this.$store.commit("setUserTW", user)// currentUserをstore.
               this.$router.push('/discover').catch((err) => {
-        throw new Error(`Problem handling something: ${err}.`);
+              this.loader = false;
+              throw new Error(`Problem handling something: ${err}.`);
+              this.dialog = true;
     });
             } else {
-              alert("有効なアカウントではありません");
+              this.dialog = true;
+              this.loader = false;
             }
           },
           err => {
+            this.dialog = true;
+            this.loader = false;
             alert(err.message);
           }
         );

@@ -5,7 +5,7 @@
       <div class="username" v-if="index == 0">{{message.user}}</div>
       <div style="margin-top: 5px"></div>
       <div class="content">
-        <div v-html="message.content"></div>
+        <div style="color: #fff;" v-html="message.content"></div>
         <chat-image v-if="message.image" :imgsrc="message.image" @imageLoad="imageLoad"></chat-image>
       </div>
     </div>

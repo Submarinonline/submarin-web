@@ -9,7 +9,7 @@
           <message :messages="messages" @imageLoad="scrollToEnd"></message>
         </div>
         <div class="typer">
-          <input type="text" placeholder="Type here..." v-on:keyup.enter="sendMessage" v-model="content">
+          <input type="text" placeholder="ここに入力..." v-on:keyup.enter="sendMessage" v-model="content">
           <v-btn icon class="blue--text emoji-panel" @click="toggleEmojiPanel">
             <v-icon>mdi-emoticon-outline</v-icon>
           </v-btn>
@@ -211,12 +211,15 @@
     font-size: 18px;
     font-weight: bold;
   }
+  a {
+    color : #fff;
+  }
   .chat-container .content{
-    padding: 8px;
-    background-color: lightgreen;
-    border-radius: 10px;
+    padding: 18px;
+    background-color:  #387EF6;
+    border-radius: 0px 50px 50px 0px;
     display:inline-block;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+    color: #fff;
     max-width: 50%;
     word-wrap: break-word;
     }
