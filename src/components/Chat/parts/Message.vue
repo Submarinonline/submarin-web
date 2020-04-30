@@ -1,11 +1,17 @@
 <template>
   <div>
     <div class="message" v-for="(message,index) in messages" v-bind:key="index" :class="{own: message.user == username}">
-      <div class="username" v-if="index>0 && messages[index-1].user != message.user">{{message.user}}</div>
-      <div class="username" v-if="index == 0">{{message.user}}</div>
+    <v-avatar v-if="index>0 && messages[index-1].user != message.user" class="usericon">
+      <img :src="message.icon" :alt="message.user">
+    </v-avatar>
+    <v-avatar v-if="index == 0" class="usericon">
+      <img :src="message.icon" :alt="message.user">
+    </v-avatar>
+      <div style="display:inline-block; vertical-align: middle;" class="username" v-if="index>0 && messages[index-1].user != message.user">{{message.user}}</div>
+      <div style="display:inline-block; vertical-align: middle;" class="username" v-if="index == 0">{{message.user}}</div>
       <div style="margin-top: 5px"></div>
       <div class="content">
-        <div style="color: #fff;" v-html="message.content"></div>
+        <p style="margin: 0px; padding: 0px;color: #fff;" v-html="message.content"></p>
         <chat-image v-if="message.image" :imgsrc="message.image" @imageLoad="imageLoad"></chat-image>
       </div>
     </div>

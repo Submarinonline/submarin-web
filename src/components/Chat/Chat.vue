@@ -1,10 +1,11 @@
 <template>
   <v-container fluid style="padding: 0;">
     <v-row no-gutters>
-    <v-col sm="2" class="scrollable">
+    <!--<v-col sm="2" class="scrollable">
         <chats></chats>
-      </v-col>
-      <v-col sm="10" style="position: relative;">
+      </v-col>-->
+      <!--<v-col sm="10" style="position: relative;">-->
+        <v-col style="width: 100%; position: relative;">
         <div class="chat-container" v-on:scroll="onScroll" ref="chatContainer" >
           <message :messages="messages" @imageLoad="scrollToEnd"></message>
         </div>
@@ -51,8 +52,11 @@
         return this.chatMessages
       },
       username () {
-        console.log(this.$store.getters)
+        console.log(this.$store.getters.user.Name)
         return this.$store.getters.user.Name
+      },
+      icon(){
+        return this.$store.getters.user.icon
       },
       onNewMessageAdded () {
         const that = this
@@ -69,6 +73,7 @@
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;')
           message.content = message.content.replace(urlPattern, "<a href='$1'>$1</a>")
+          console.log(message)
           if (!newMessage) {
             that.chatMessages.unshift(that.processMessage(message))
             that.scrollTo()
@@ -138,7 +143,7 @@
       },
       sendMessage () {
         if (this.content !== '') {
-          this.$store.dispatch('sendMessage', { username: this.username, content: this.content, date: new Date().toString(), chatID: this.id })
+          this.$store.dispatch('sendMessage', { username: this.username, content: this.content, date: new Date().toString(), chatID: this.id,icon:this.icon })
           this.content = ''
         }
       },
@@ -214,10 +219,14 @@
   a {
     color : #fff;
   }
+  .usericon{
+    display:inline-block;
+    margin-right: 10px;
+  }
   .chat-container .content{
-    padding: 18px;
+    padding: 0px 8px;
     background-color:  #387EF6;
-    border-radius: 0px 50px 50px 0px;
+    border-radius: 0px 10px 10px 5px;
     display:inline-block;
     color: #fff;
     max-width: 50%;

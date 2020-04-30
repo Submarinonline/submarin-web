@@ -16,7 +16,8 @@ const ChatModule = {
       const message = {
         user: payload.username,
         content: payload.content,
-        date: payload.date
+        date: payload.date,
+        icon: payload.icon
       }
       firebase.database().ref('messages').child(chatID).child('messages').push(message)
         .then(
