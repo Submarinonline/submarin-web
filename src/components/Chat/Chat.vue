@@ -1,11 +1,12 @@
 <template>
   <v-container fluid style="padding: 0;">
+    <popup :text="type" ref="dialog"></popup>
     <v-bottom-sheet v-model="Panel">
       <v-list>
         <v-list-item
           v-for="tile in tiles"
           :key="tile.title"
-          @click="Panel = false"
+          @click="clickitem(tile.title)"
         >
           <v-list-item-avatar>
             <v-avatar size="32px" tile>
@@ -39,16 +40,20 @@
 <script>
   import Message from './parts/Message.vue'
   import Chats from './parts/Chats.vue'
+  import Gif from './parts/Gif.vue'
+  import Popup from './parts/Popup.vue'
   import * as firebase from 'firebase'
 
   export default {
     data () {
       return {
+        type: String,
         content: '',
         chatMessages: [],
         Panel: false,
         currentRef: {},
         loading: false,
+        dialog: false,
         totalChatHeight: 0,
         tiles: [
         { icon: 'gif', title: 'GIF' },
@@ -66,7 +71,9 @@
     },
     components: {
       'message': Message,
-      'chats': Chats
+      'chats': Chats,
+      'GIF': Gif,
+      'popup': Popup,      
     },
     computed: {
       messages () {
@@ -113,6 +120,13 @@
       }
     },
     methods: {
+      clickitem(title){
+        if(title == 'GIF'){
+          this.type = 'GIF';
+        this.$refs.dialog.open();
+        }
+        this.Panel = false;
+      },
       loadChat () {
         this.totalChatHeight = this.$refs.chatContainer.scrollHeight
         this.loading = false
