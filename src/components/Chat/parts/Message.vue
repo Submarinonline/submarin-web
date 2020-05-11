@@ -11,8 +11,8 @@
       <div style="display:inline-block; vertical-align: middle;" class="username" v-if="index == 0">{{message.user}}</div>
       <div style="margin-top: 5px"></div>
       <div class="content">
-        <p style="margin: 0px; padding: 0px;color: #fff;" v-html="message.content"></p>
-        <chat-image v-if="message.image" :imgsrc="message.image" @imageLoad="imageLoad"></chat-image>
+        <p style="margin: 0px; padding: 0px;color: #fff;" v-if="!message.image" v-html="message.content"></p>
+        <chat-image style="margin-top: 0.3em" v-if="message.image" :imgsrc="message.image" @imageLoad="imageLoad"></chat-image>
       </div>
     </div>
   </div>

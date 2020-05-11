@@ -42,8 +42,24 @@
 </v-card-actions>
   </v-card>
     <v-row no-gutters style="margin-top: 5px;">
+  <v-col cols="12" sm="4" v-if="!this.chats">
+    <v-skeleton-loader
+      max-width="300"
+      type="card"
+    ></v-skeleton-loader>
+    <v-skeleton-loader
+      max-width="300"
+      type="card"
+    ></v-skeleton-loader>
+    <v-skeleton-loader
+      max-width="300"
+      type="card"
+    ></v-skeleton-loader>
+        </v-col>
+    </v-row>
+    <v-row no-gutters style="margin-top: 5px;">
       <v-col v-for="chat in chats" :key="chat.name" v-show="chat.key !== '-M68awMntZzgXQ8fhy4x'" cols="12" sm="4">
-        <v-card max-width="344" style="margin: 5px;">
+        <v-card max-width="300" style="margin: 5px;">
           <v-list-item three-line>
             <v-list-item-content>
               <v-list-item-title class="headline mb-1">{{chat.name}}</v-list-item-title>

@@ -1,6 +1,6 @@
 <template>
   <v-container fluid style="padding: 0;">
-    <popup :text="type" ref="dialog"></popup>
+    <popup :text="type" ref="dialog" @GETimage="getimage"></popup>
     <v-bottom-sheet v-model="Panel">
       <v-list>
         <v-list-item
@@ -42,9 +42,8 @@
   import Chats from './parts/Chats.vue'
   import Gif from './parts/Gif.vue'
   import Popup from './parts/Popup.vue'
-  import * as firebase from 'firebase'
-
-  export default {
+  import * as firebase from 'firebase' 
+   export default {
     data () {
       return {
         type: String,
@@ -53,6 +52,8 @@
         Panel: false,
         currentRef: {},
         loading: false,
+        //dialogstate: store.state,
+       // dialogstate: null,
         dialog: false,
         totalChatHeight: 0,
         tiles: [
@@ -127,6 +128,11 @@
         }
         this.Panel = false;
       },
+      getimage(url){
+        console.log(url);
+        this.content = url;
+        this.sendMessage();
+      },
       loadChat () {
         this.totalChatHeight = this.$refs.chatContainer.scrollHeight
         this.loading = false
@@ -164,9 +170,7 @@
         }
       },
       processMessage (message) {
-        /*eslint-disable */
         var imageRegex = /([^\s\']+).(?:jpg|jpeg|gif|png)/i
-        /*eslint-enable */
         if (imageRegex.test(message.content)) {
           message.image = imageRegex.exec(message.content)[0]
         }

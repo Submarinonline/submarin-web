@@ -20,7 +20,7 @@
         >
         <v-col style="max-width: 300px; min-height: 80px;" v-for="img in list" v-bind:key="img.media[0].gif.url">
         <v-card>
-            <v-img :src="img.media[0].gif.url">
+            <v-img @click="clickitem(img.media[0].gif.url)" :src="img.media[0].gif.url">
             </v-img>
           </v-card>
         </v-col>
@@ -33,7 +33,7 @@ import axios from 'axios';
   data () {
     return {
       top: null,
-      list: null
+      list: null,
     }
   },
   mounted () {
@@ -53,8 +53,11 @@ import axios from 'axios';
       .then(response => (
           this.list = response["data"]["results"],
           console.log(response["data"]["results"][0]["media"][0]["gif"]["url"])
-          
         ))
+      },
+      clickitem(url){
+      console.log(url);
+      this.$emit('getdata', (url));
       }
   }
 }

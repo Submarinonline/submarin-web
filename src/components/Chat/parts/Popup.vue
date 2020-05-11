@@ -9,7 +9,7 @@
           <v-spacer></v-spacer>
         </v-toolbar>
       <div v-if="text === 'GIF'">
-     <GIF></GIF>
+     <GIF @getdata="GETGIF"></GIF>
       </div>
       </v-card>
     </v-dialog>
@@ -20,7 +20,8 @@ import Gif from './Gif.vue'
 export default {
 data(){
     return{
-        dialog: false
+        dialog: false,
+        url: false
     }
 },
 components: {
@@ -29,13 +30,22 @@ components: {
 props:["text"],
 computed: {
 
-},methods:{
+},
+methods:{
    open() {
       this.dialog = true;
+      console.log('dialogstate:',this.dialogstate);
     },
     close() {
       this.dialog = false;
-    }
+      dialogstate: store.state;
+    },
+    GETGIF(url){
+      console.log('GETGIF');
+      console.log(url);
+      this.$emit('GETimage', url);
+      this.dialog = false;
+}
 }
 }
 </script>
