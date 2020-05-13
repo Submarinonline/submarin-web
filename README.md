@@ -1,33 +1,46 @@
-![alt text](https://berksaribas.github.io/img/vuetifychat.png)
+Submarin Vue(beta)
+# 実装状況
+ - [x] オープンチャット
+ - [x] GIF(Tenor,デザイン修正が必要)
+ - [ ] 画像送信
+ - [ ] シームレスな画像送信 
+ - [ ] GIF lazyLoading 
+ - [x] グループ
+ - [ ] Firefox/safari向けデザイン調整
+ - [ ] グループ検索
+ - [ ] グループ削除
+ - [ ] グループアイコンの設定
+ - [ ] アプリからログイン
+ - [ ] アプリ向け最適化
+ - [ ] Ctrl + Enterで送信
+ - [x] Twitterでログイン
+ - [ ] 動画対応
+ - [ ] 怪レい日本語
+ - [x] Youtube埋め込み
+ - [ ] リンク表示/OGP対応
+ - [ ] バージョン変数
+ - [ ] キーを別ファイルに保存
+ - [ ] アプデ確認
+ - [ ] メンション
+ - [ ] push通知
+ - [ ] 通知音
+## Webページ
+https://beta.submarin.online
 
-A chat built with Vue + Vuex + Vuetify + Firebase.
-## Features
-* Basic authentication with Firebase
-* Create chat rooms, join them
-* Use emoji-picker to express your emotions.
-* Scroll up to load previous messages.
-
-## Live Demo
-https://mutfak-chat.firebaseapp.com
-
-## Build Setup
+## 操作
 
 ``` bash
-# install dependencies
+# パッケージをインストール
 npm install
 
-# serve with hot reload at localhost:8080
+# 動かしてみる
 npm run serve
 
-# build for production with minification
+# ビルド
 npm run build
 
-# build for production and view the bundle analyzer report
+#　ビルド（レポート表示）
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-## Configuration
-
-Edit main.js to initialize your Firebase App.
