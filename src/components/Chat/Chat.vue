@@ -1,6 +1,6 @@
 <template>
   <v-container fluid style="padding: 0;">
-    <popup :text="type" ref="dialog" @GETimage="getimage"></popup>
+    <popup :text="type" ref="dialog" @GETdata="getdata"></popup>
     <v-bottom-sheet v-model="Panel">
       <v-list>
         <v-list-item
@@ -125,10 +125,13 @@
         if(title == 'GIF'){
           this.type = 'GIF';
         this.$refs.dialog.open();
+        } else if(title == 'Youtube'){
+        this.type = 'Youtube';
+        this.$refs.dialog.open();
         }
         this.Panel = false;
       },
-      getimage(url){
+      getdata(url){
         console.log(url);
         this.content = url;
         this.sendMessage();
@@ -173,6 +176,11 @@
         var imageRegex = /([^\s\']+).(?:jpg|jpeg|gif|png)/i
         if (imageRegex.test(message.content)) {
           message.image = imageRegex.exec(message.content)[0]
+        }
+        if (message.content.match(/youtu.be/)) {
+          message.youtube =message.content;
+          console.log('chat.vue yt');
+          console.log(message.youtube);
         }
         var emojiRegex = /([\u{1f300}-\u{1f5ff}\u{1f900}-\u{1f9ff}\u{1f600}-\u{1f64f}\u{1f680}-\u{1f6ff}\u{2600}-\u{26ff}\u{2700}-\u{27bf}\u{1f1e6}-\u{1f1ff}\u{1f191}-\u{1f251}\u{2934}-\u{1f18e}])/gu
         if (emojiRegex.test(message.content)) {

@@ -2,6 +2,27 @@
   <v-container>
     <div class="text-center">
     <v-dialog
+      v-model="alreadylogin"
+      hide-overlay
+      persistent
+      width="300"
+    >
+      <v-card
+        color="white"
+        dark
+      >
+        <v-card-text>
+          ログイン中...お待ちください..
+      <v-progress-circular
+      indeterminate
+      color="primary"
+    ></v-progress-circular>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+  </div>
+    <div class="text-center">
+    <v-dialog
       v-model="dialog"
       width="500"
     >
@@ -46,11 +67,29 @@
 import firebase from "firebase";
 import router from "vue-router";
   export default {
+    created(){
+      firebase.auth().onAuthStateChanged(user => {
+    console.log('created'),
+    console.log(user)
+            if (user) {
+              this.alreadylogin = true;
+              console.log(user);
+              this.$store.commit("setUserTW", user)
+              this.alreadylogin = false;
+              this.$router.push('/discover').catch((err) => {
+              this.loader = false;
+              throw new Error(`Problem handling something: ${err}.`);
+              this.dialog = true;
+    });
+            }
+    });
+    },
     data () {
       return {
         email: '',
         password: '',
         loader: false,
+        alreadylogin: false,
         dialog: false
       }
     },
@@ -74,6 +113,7 @@ import router from "vue-router";
         .signInWithPopup(provider)
         .then(
           result => {
+            console.log(result);
             var token;
             var secret;
             var user;

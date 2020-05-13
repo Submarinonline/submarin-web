@@ -30,7 +30,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <img src="@/assets/submarin.png" style="text-align: center; width: 60%; max-width: 500px;">
+    <img src="@/assets/submarin.png" style="text-align: center; width: 60%; max-width: 500px; box-shadow:none;">
     <div style="color: #fff; margin-top: 0px; font-weight: bold; font-size: 20px; font-family: Comfortaa;">By HiSubway</div>
     <div style="color: #fff; font-weight: bold; margin-bottom: 0px;"><v-icon color="white">mdi-package-variant</v-icon>10.0</div>
 <v-btn text @click="dialog = true" v-on="on" style="text-transform: none; display: inline-block; color: #fff; vertical-align: middle;"><v-icon color="#fff" style="display: inline-block;">mdi-help-circle-outline</v-icon> <p style="margin-bottom: 0px; display: inline-block; color: #fff; vertical-align: middle;">Submarinとは</p></v-btn>

@@ -60,8 +60,11 @@ d="M-160 44c30 0
       <v-app-bar-nav-icon color="#606060" @click.native.stop="drawerToggle = !drawerToggle"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <router-link to="/chat/0" tag="span" style="cursor: pointer"><v-img height="40" width="40" src="@/assets/512.png"></v-img></router-link>
-      </v-toolbar-title>
+      </v-toolbar-title> 
       <v-spacer></v-spacer>
+      <v-btn @click="logoutFB" icon>
+        <v-icon color="secondary">mdi-logout-variant</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
@@ -70,6 +73,8 @@ d="M-160 44c30 0
 </template>
 
 <script>
+import firebase from "firebase";
+import router from "vue-router";
 import VueHead from 'vue-head'
   export default {
     data () {
@@ -82,20 +87,13 @@ import VueHead from 'vue-head'
         {rel: 'stylesheet',href:'https://fonts.googleapis.com/css?family=Comfortaa'}
       ]
     },
+    methods:{ 
+      logoutFB(){
+        console.log("logout")
+        firebase.auth().signOut()
+        this.$router.push('/top')
+      },},
     computed: {
-      menuItems () {
-        let items = [
-          { icon: 'mdi-face', title: '登録', route: '/register' },
-          { icon: 'mdi-lock-open', title: 'ログイン', route: '/login' }
-        ]
-        if (this.userIsAuthenticated) {
-          items = [
-            {icon: 'mdi-forum', title: 'Create a Chat', route: '/create'},
-            {icon: "mdi-chat", title: 'Chat List', route: '/discover'}
-          ]
-        }
-        return items
-      },
       userIsAuthenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       },

@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
-
+const socket = "wss://aws1.xn--d-8o2b.com"
+const ws = new WebSocket(socket);
 const ChatModule = {
   state: {
     chats: {}
@@ -18,6 +19,17 @@ const ChatModule = {
         content: payload.content,
         date: payload.date,
         icon: payload.icon
+      }
+      let WebSocketmessage = {
+        type: "msg",
+        user: payload.username,
+        body: payload.content,
+      };
+      if (ws.readyState === 1) {
+        ws.send(JSON.stringify(WebSocketmessage));
+      } else {
+        console.log(ws.readyState);
+        console.log('WebSocketに接続を試行中か接続されていません');
       }
       firebase.database().ref('messages').child(chatID).child('messages').push(message)
         .then(

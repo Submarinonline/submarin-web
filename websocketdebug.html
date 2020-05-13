@@ -1,0 +1,51 @@
+<style>
+    input#msgs {
+    width: 360px;
+    height: 360px;
+    }
+    </style>
+    <html>
+    USER:<br>
+    <input type="text" id="name"><br>
+    MESSAGE:<br>
+    <input type="text" id="msgbox">
+    <input type="button" value="send" id="submit" onClick="sendMsg();"><br>
+    RECIEVED MESSAGES:<br>
+    <textarea id="msgs" readonly></textarea>
+    </html>
+    <script>
+    
+    const socket = "wss://aws1.xn--d-8o2b.com"
+    
+    const ws = new WebSocket(socket);
+    console.log(`WebSocket is: ${socket}`);
+    console.log("To send message: s.send(\"MSG\")");
+    
+    // Show new message on top.
+    const printMsg = msgBody => {
+        let msgBox = document.getElementById("msgs");
+        msgBox.value = msgBody + "\n" + msgBox.value;
+    }
+    
+    // Send message to Server.
+    const sendMsg = () => {
+        const name = document.getElementById("name").value;
+        const msgBody = document.getElementById("msgbox").value;
+        let msgData = {
+            type: "msg",
+            user: name,
+            body: msgBody,
+        };
+        ws.send(JSON.stringify(msgData));
+    }
+    
+    // On recieve a message.
+    ws.addEventListener('message', message => {
+        console.log(message);
+    
+        const msgData = JSON.parse(message.data);
+    
+        printMsg(`${msgData.body}`);
+        printMsg(" -------- ");
+    });
+    </script>

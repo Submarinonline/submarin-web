@@ -24,6 +24,7 @@ new Vue({
       messagingSenderId: "1080856965224",
       appId: "1:1080856965224:web:3a55046f12d554f7eb0bdd",
       measurementId: "G-CNMYGBEF91"
-    })
+    }),
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
   }
 }).$mount('#app')
