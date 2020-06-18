@@ -480,6 +480,7 @@ for(var i=0; i<l; i++){
         }
         async modifymessage(msg){
           var rep = msg.replace(/\+/g, ' ');
+          var rep = rep.replace(/改行しろさぶうぇい/g, '&#010;');
           console.log(rep);
           var arymsg = rep.split('|||||');
           const va = String(arymsg[1]);

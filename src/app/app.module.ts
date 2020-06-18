@@ -10,6 +10,7 @@ import { Push } from '@ionic-native/push/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { FormsModule }   from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +19,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
   declarations: [AppComponent,OptionComponent],
   entryComponents: [],
   exports:[HttpClientModule],
-  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), FormsModule, AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+  imports: [BrowserAnimationsModule,BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), FormsModule, AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [NavParams,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },PubNubAngular,AngularFireDatabase,Push],

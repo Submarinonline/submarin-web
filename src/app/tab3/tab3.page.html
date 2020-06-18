@@ -8,6 +8,13 @@
     </div>
   </div>
   <div class="box" style="position: relative;width: 90%; left: 0; right: 0; margin: 0 auto;top: 70px; border-radius: 10px; padding-top: 10px;padding-bottom: 10px;">
+  <ion-button size="large" expand="block" style=""><ion-icon name="logo-twitter"></ion-icon>でログイン</ion-button>
+  <ion-item>
+    <ion-label>過去のメッセージを100件まで表示する</ion-label>
+    <ion-checkbox (click)="togglemessage()" [(ngModel)]="oldmessage"></ion-checkbox>
+  </ion-item>
+  <ion-button (click)="toggleOption()" fill="clear">または手動で設定する</ion-button>
+  <div *ngIf="option" [@fadeInOut]>
     <ion-list>
       <ion-item>
         <ion-label placeholder="ここに名前を入力..." position="floating" >名前</ion-label>
@@ -20,13 +27,10 @@
         <ion-label placeholder="ここにtwitterIDを入力..." position="floating">TwitterID</ion-label>
         <ion-input [(ngModel)]="tw"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label>過去のメッセージを100件まで表示する</ion-label>
-        <ion-checkbox [(ngModel)]="oldmessage"></ion-checkbox>
-      </ion-item>
     </ion-list>
     <ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
-  </div>  
+  </div>
+  </div>
   </div>
   <svg class="editorial"
   xmlns="http://www.w3.org/2000/svg"

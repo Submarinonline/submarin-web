@@ -1,24 +1,54 @@
 import { Component,ElementRef,ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
+import {style, state, animate, transition, trigger} from '@angular/animations';
 import { ToastController, ActionSheetController, ModalController } from '@ionic/angular';
 import { ImagePage } from './../image/image.page';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-  styles:[`host: { 'style':'line-height: 0'}`]
+  styles: [`host: { 'style':'line-height: 0'}`],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({opacity:0}),
+        animate(500, style({opacity:1})) 
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({opacity:0})) 
+      ])
+    ])
+  ]
 })
 export class Tab3Page {
  tw: String;
 name: String;
 oldmessage: boolean;
+option: boolean;
  url: String;
 prevurl: String;
   constructor(public mc:ModalController,public ac: AlertController,private as:ActionSheetController,private storage: Storage, public toastController: ToastController) { }
   async ionViewWillEnter() {
     console.log('ivl');
-    this.setval();
+    this.setval()
+  }
+  toggleOption() {
+    if (this.option) {
+      this.option = false;
+    } else {
+      this.option = true;
+    }
+  }
+  async togglemessage() {
+    var va;
+    if(this.oldmessage){
+      va = false;
+    }else {
+      va = true;
+    }
+    console.log(va);
+    await this.storage.set('oldmessage', va);
   }
   async openimg() {
     const modal = await this.mc.create({
