@@ -250,7 +250,7 @@ export class ChatPage {
         this.title = this.roomname;
       }
       if(!this.url|| this.url === ' '|| this.url === '　'||this.url === ''){
-        this.url = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png';
+        this.url = 'https://img.icons8.com/fluent/96/000000/user-male-circle.png';
       }
       console.log(this.url);
       if(this.url == 'hisubway.png'){

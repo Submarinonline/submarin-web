@@ -16,7 +16,7 @@
     "pns": "(pubnubのsubキー)",
     "reload": "（トークに接続中の全ユーザーをリロードさせる文字列を設定する）",
     "ipinfo":"（https://ipinfo.io/のAPIキーURL）",
-    "log":"（入退室管理用文字列を設定）",
+    "log":"（入退室表示用文字列を設定）",
     "youtube":"(APIキー)",
     "GIPHY":"(APIキー)",
     "Version":"（バージョン、アクセス時にfirebaseと照合して更新確認をする）"
