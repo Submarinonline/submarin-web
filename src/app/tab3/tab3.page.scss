@@ -107,6 +107,7 @@ margin-left: 20px;
   }
   .box{
     padding-top: 10vw;
+    padding-bottom: 8vw;
   }
 }
 
@@ -116,6 +117,7 @@ margin-left: 20px;
   }
   .box{
     padding-top: 6vw;
+    padding-bottom: 6vw;
   }
 }
 @media only screen and (min-width:651px) {
@@ -124,11 +126,16 @@ margin-left: 20px;
   }
 .box {
   padding-top: 4vw;
+  padding-bottom: 4vw;
 }
 }
  
 @media only screen and (min-width:961px) {
   .donglong {
     font-size: 1.5rem;
+  }
+  .box {
+    padding-top: 2vw;
+    padding-bottom: 2vw;
   }
 }
