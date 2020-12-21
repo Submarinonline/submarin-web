@@ -1,6 +1,6 @@
 # Submarin-web
 [Submarin Web](https://submarin.online) 
-***version 8.9***
+***version 10***
 # License
 [MIT License](https://opensource.org/licenses/MIT)
 # 使い方
@@ -18,6 +18,8 @@
  - [ ] グループ検索
  - [x] プロフィールのリアルタイムプレビュー
  - [ ] グループ削除
+ - [ ] サイトタイトル（検索エンジン向け）
+ - [ ] OGP
  - [ ] グループアイコンの設定
  - [x] アプリからログイン
  - [x] アプリ向け最適化
