@@ -33,6 +33,27 @@ export class TabsPage {
       position: 'top'
     });
     this.tst.present();
+    this.checkdisplay();
+  }
+  async checkdisplay(){
+    console.log(window.innerHeight,window.innerWidth);
+    if(window.innerWidth < 320 || window.innerHeight < 600){
+
+    const alert = await this.alert.create({
+      header: 'お使いのデバイスに対応していません。',
+      message: '現在、お使いのデバイスの画面サイズでの表示に対応していません。無視して使用することもできますが、正常に表示されない場合があります。',
+      buttons: [
+        {
+          text: '無視して使用する',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+await alert.present();
+  }
   }
   async versioncheck() {
     this.db.object('Version').valueChanges().subscribe(data => {

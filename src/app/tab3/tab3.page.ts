@@ -31,15 +31,17 @@ prevurl: String;
   constructor(public mc:ModalController,public ac: AlertController,private as:ActionSheetController,private storage: Storage, public toastController: ToastController) { }
   async ionViewWillEnter() {
     console.log('ivl');
-    this.setval()
+    this.setval();
+    this.option = true;
   }
   toggleOption() {
-    if (this.option) {
+   /* if (this.option) {
       this.option = false;
     } else {
       this.option = true;
-    }
+    }*/
   }
+
   async togglemessage() {
     var va;
     if(this.oldmessage){

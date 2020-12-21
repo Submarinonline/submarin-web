@@ -90,15 +90,21 @@ d="M-160 44c30 0
 <use xlink:href="#gentle-wave" x="50" y="6" fill="#41ADEF"/>  
 </g>
 </svg>
-<div class="content">
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="add()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
-  <ion-searchbar placeholder="検索は現在使用できません" (search)="search($event)"></ion-searchbar>
-  <ion-list>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="add()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div class="content">
+
+  <div class="bar">
+  <ion-input class="bar-input" placeholder="グループを検索..."></ion-input>
+  </div>
+  <!--<ion-searchbar animated="true" placeholder="検索は現在使用できません" (search)="search($event)"></ion-searchbar>-->
+
+  <ion-list class="roomlist">
     <ion-spinner style="text-align: center;" *ngIf="!room"></ion-spinner>
     <ion-item (click)="go(rooms.key,rooms.name)" *ngFor="let rooms of room">
       <ion-icon *ngIf="rooms.key" slot="end" name="lock-closed"></ion-icon>

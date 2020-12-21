@@ -33,7 +33,7 @@
     "cordova-browser": "6.0.0",
     "core-js": "^3.6.4",
     "e-ngx-xgplayer": "^5.0.1",
-    "firebase": "^7.13.2",
+    "firebase": "^7.24.0",
     "jquery": "^3.4.1",
     "phonegap-plugin-push": "^2.3.0",
     "pubnub": "^4.27.4",

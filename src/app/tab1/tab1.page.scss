@@ -4,3 +4,19 @@ ion-content ion-toolbar {
 ion-list{
  border-radius: 5px;
 }
+.bar{
+  position: fixed;
+  z-index: 20;
+  text-align: center;
+  width: 90%;
+  top: 8vw;
+}
+.bar-input{
+  border-radius: 50px;
+  background: #fff;
+  color: #606060;
+  text-align: start;
+}
+.roomlist{
+  margin-top: 8vw;
+}

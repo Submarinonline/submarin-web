@@ -1,19 +1,28 @@
 <ion-content style="text-align: center;">
   <div class="content">
   <div class="top">
-    <img alt="" (error)="prevurl = 'https://山d.com/storage/wei_san/.submarin_files/b7ea3.png'" [src]="prevurl" class="topimg">
+    <img alt="" (error)="prevurl = 'https://img.icons8.com/fluent/96/000000/user-male-circle.png'" [src]="prevurl" class="topimg">
     <div class="n">
+    <ng-container *ngIf="tw && name">
     <h1 class="name"> {{this.name}}</h1>
     <h3 class="id">@{{this.tw}}</h3>
+  </ng-container>
+
+  <ng-container *ngIf="!tw || !name">
+    <div class="dontlong">
+    <h3 class="id">idか名前が入力されていません。</h3>
+    </div>
+  </ng-container>
+
     </div>
   </div>
-  <div class="box" style="position: relative;width: 90%; left: 0; right: 0; margin: 0 auto;top: 70px; border-radius: 10px; padding-top: 10px;padding-bottom: 10px;">
-  <ion-button size="large" expand="block" style=""><ion-icon name="logo-twitter"></ion-icon>でログイン</ion-button>
-  <ion-item>
+  <div class="box">
+
+  <ion-item style="background-color: transparent;">
     <ion-label>過去のメッセージを100件まで表示する</ion-label>
-    <ion-checkbox (click)="togglemessage()" [(ngModel)]="oldmessage"></ion-checkbox>
+    <ion-checkbox disabled (click)="togglemessage()" [(ngModel)]="oldmessage"></ion-checkbox>
   </ion-item>
-  <ion-button (click)="toggleOption()" fill="clear">または手動で設定する</ion-button>
+  <!--<ion-button (click)="toggleOption()" fill="clear">または手動で設定する</ion-button> -->
   <div *ngIf="option" [@fadeInOut]>
     <ion-list>
       <ion-item>
@@ -28,7 +37,7 @@
         <ion-input [(ngModel)]="tw"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button (click)="send()" expand="block" style="width: 80%; position: relative;left: 0; right: 0;margin: 0 auto;" size="large">OK</ion-button>
+    <ion-button (click)="send()" expand="block" shape="round" style="width: 80%; position: relative;left: 0; right: 0; margin: 0 auto;" size="large">プロフィールを変更</ion-button>
   </div>
   </div>
   </div>

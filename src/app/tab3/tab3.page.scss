@@ -7,9 +7,7 @@ body {
 ion-content {
   --background: #41ADEF;
 }
-.box{
-  background: var(--ion-toolbar-background);
-}
+
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 ::selection{background-color: salmon; color: white;}
 .parallax > use{
@@ -78,10 +76,59 @@ animation:move-forever 12s linear infinite;
 .id{
 margin-left: 20px;
 }
+
 .n{
   position: relative;
-margin-left: 10px;
+  margin-left: 10px;
   display:inline-block;
-  white-space:nowrap;
+  white-space:pre-line;
   vertical-align: middle;
+}
+.dontlong{
+  position: relative;
+  display:inline-block;
+  font-size: 0.5rem;
+  z-index: 10;
+}
+.box{
+  background: var(--ion-toolbar-background);
+  position: relative;
+  width: 90%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 70px; border-radius: 30px;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
+@media only screen and (min-width:320px) {
+  .dontlong {
+    font-size: 0.8rem;
+  }
+  .box{
+    padding-top: 10vw;
+  }
+}
+
+@media only screen and (min-width:420px) {
+  .dontlong {
+    font-size: 0.8rem;
+  }
+  .box{
+    padding-top: 6vw;
+  }
+}
+@media only screen and (min-width:651px) {
+  .dontlong {
+    font-size: 1rem;
+  }
+.box {
+  padding-top: 4vw;
+}
+}
+ 
+@media only screen and (min-width:961px) {
+  .donglong {
+    font-size: 1.5rem;
+  }
 }
