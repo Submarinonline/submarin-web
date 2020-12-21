@@ -7,6 +7,22 @@
 1) このリポジトリをクローン
 2) debug>```ionic serve```
 3) build>```ionic cordova build [android,ios,browser]```
+4) build(本番用)>```ionic cordova build [android,ios,browser] --prod```
+# hidefile.json
+ダウンロード後、動作させるには/srcにhidefile.jsonを作成する必要があります。下のJSONを参考に作成してください。
+```
+{
+    "pnp": "(pubnubのpubキー)",
+    "pns": "(pubnubのsubキー)",
+    "reload": "（トークに接続中の全ユーザーをリロードさせる文字列を設定する）",
+    "ipinfo":"（https://ipinfo.io/のAPIキーURL）",
+    "log":"（入退室管理用文字列を設定）",
+    "youtube":"(APIキー)",
+    "GIPHY":"(APPIキー)",
+    "Version":"（バージョン、アクセス時にfirebaseと照合して更新確認をする）"
+}
+```
+
 # 実装状況
  - [x] オープンチャット
  - [x] GIF(GIPHY)
